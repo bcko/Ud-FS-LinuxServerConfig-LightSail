@@ -260,3 +260,95 @@ A full path is also referred to as an absolute path.
 [Bash manual: Bash Startup Files](http://www.gnu.org/software/bash/manual/html_node/Bash-Startup-Files.html)
 
 
+## Users Home Directory
+Now that you know all about your own home directory,
+let's imagine that you've created a new user named student.
+What would the full path to that user's home directory be?
+
+All users home directories are stored within these slash home directory.
+So a user named student would have a home directory of /home/student.
+
+## Other Important Directories
+So you're all comfortable with your home directory, but
+surely there's more to this computer than just that.
+Right?
+Oh yeah, there is a lot more.
+So let's start exploring some of the other areas of the Linux
+operating system.
+We'll do this by cding to the top level root folder with cd /.
+If we ls -al this directory, we'll see that there's a lot of content here.
+We're definitely not going to cover all of these, but
+we'll discuss the most important folders.
+We're already familiar with home, but there are two other important
+directories where you'll be making lots of changes and editing files.
+Etc is where configuration files live.
+As we start setting up our web and
+database server, we'll be modifying some files within this directory.
+Var is for variable files.
+Which is kind of an odd name.
+Variable files are simply files that you expect to grow or
+change in size over time.
+You'll typically find system and application logs within this directory.
+There are a few other directories that are that are important for you to know,
+but you probably won't be modifying or directly interacting with them.
+Bin is where executable binaries are stored,
+that are accessible by all users.
+These are applications that you run,
+like the LS command we've used a few times already.
+If you were to list the contents of this directory,
+you would actually see there's a file called LS within it.
+SBin is very similar to bin, except that these binaries are to only be
+used by the route user for system administration and maintenance purposes.
+We'll discuss some of the applications within this directory a bit later.
+Lib is for
+libraries that support the binaries that are located around the system.
+Finally, usr is for user programs.
+This could seem a bit confusing compared to the bin directory.
+The difference isn't that important.
+The only difference really is that the binaries within bin are required for
+a boot-up and system maintenance processes,
+and the binaries in usr necessarily aren't required for that.
+
+## Traversing the File System
+Now that you're familiar with the most important directories on any Linux file
+system, in which directory would you find system management applications
+that are not normally used by standard users?
+You would find these system management applications within the /sbin directory.
+
+## Understanding $PATH
+We've used the LS command or application a few times already, and
+we know that it's located within the slash bin directory, but
+how come we didn't have to type the full path to this file to run it?
+Why didn't we have to type /bin/ls?
+Linux systems provide a nice little short cut system within the dollar sign
+path variable.
+Let's take a look at that and
+figure out how the operating system saves us some typing.
+If you type echo $PATH and you run that,
+you're presented with a bunch of paths separated by colon characters.
+We see /usr/local/sbin:/usr/local/bin and on and on and on.
+These are actually the directories Linux will progress through looking for
+a binary when you just type the name of it like ls.
+When you type ls, the operating system checks the first directory for
+an executable file names ls.
+If it's not there, it checks the next.
+And on and on and on until it gets here to /bin.
+And it does find that file, so it runs it.
+If you ever find that your commands aren't being found, or
+things are just acting really crazy, you might want to check this variable.
+I've placed a link in the instructor notes that will walk you through how to
+edit this variable and save it if need be.
+
+[AskUbuntu: How to Update $PATH](http://askubuntu.com/questions/60218/how-to-add-a-directory-to-my-path)
+
+## Outro
+Now that you're pretty comfortable with your shiny new Linux machine,
+it's time to get your hands dirty, and really start working with it.
+In the next lesson, you'll start addressing some security concerns.
+You'll work with user management, authentication, file permissions,
+firewalls, and software updates.
+It's going to be a lot of material, but it's super important, not only for
+your users, but the Internet as a whole.
+You're about to unleash your very own server to the internet, and
+anyone in the world, at any time is going to be able to talk to it.
+
