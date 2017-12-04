@@ -104,14 +104,16 @@ Once your instance is running, the display gets brighter.
 ### 7. It's running; let's use it!
 Once your instance has started up, you can log into it with SSH from your browser.
 
-The public IP address of the instance is displayed along with its name. In the above picture it's 54.84.49.254. The DNS name of this instance is ec2-54-84-49-254.compute-1.amazonaws.com.
+The public IP address of the instance is displayed along with its name. In the above picture it's `54.84.49.254`. The DNS name of this instance is `ec2-54-84-49-254.compute-1.amazonaws.com`.
 ![The main page for my `silly-name-here` instance. The big orange "Connect using SSH" button is the next step.](https://d17h27t6h515a5.cloudfront.net/topher/2017/February/589e43c3_screen-shot-2017-02-10-at-14.48.40/screen-shot-2017-02-10-at-14.48.40.png)
 
 The main page for my silly-name-here instance.
 The big orange "Connect using SSH" button is the next step.
+
 Explore the other tabs of this user interface to find the Lightsail firewall and other settings. You'll need to configure the Lightsail firewall as one step of the project.
 
-When you SSH in, you'll be logged as the ubuntu user. When you want to execute commands as root, you'll need to use the sudo command to do it. Review sudo here if you need a refresher!
+When you SSH in, you'll be logged as the `ubuntu` user. When you want to execute commands as `root`, you'll need to use the `sudo` command to do it. [Review sudo here if you need a refresher](https://classroom.udacity.com/nanodegrees/nd004/parts/ab002e9a-b26c-43a4-8460-dc4c4b11c379/modules/357367901175461/lessons/4331066009/concepts/48010894490923)!
+
 ![An SSH window logged into the server instance. From here, it's just like any other Linux server.](https://d17h27t6h515a5.cloudfront.net/topher/2017/February/589e43be_screen-shot-2017-02-10-at-14.49.14/screen-shot-2017-02-10-at-14.49.14.png)
 An SSH window logged into the server instance.
 From here, it's just like any other Linux server.
