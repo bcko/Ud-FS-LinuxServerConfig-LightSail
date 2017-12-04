@@ -39,4 +39,15 @@ On some Windows systems, you will need to add one more argument to the line to e
 config.vm.network "forwarded_port", guest: 80, host: 8080, host_ip: "127.0.0.1"
 ```
 
+### Installing Apache
+You’ll setup your web application server one piece at a time, testing each as you progress. The first step is to get your server responding to HTTP requests. To do this, you’ll use Apache HTTP Server - the most commonly installed web server on the Internet with roughly 47% market share.
+
+Install Apache using your package manager with the following command: `sudo apt-get install apache2` Confirm Apache is working by visiting http://localhost:8080 in your browser. You should see the following page:
+
+![Apache2 Ubuntu Default Page](http://i.imgur.com/kzCukiC.png)
+
+Apache, by default, serves its files from the `/var/www/html` directory. If you explore this directory you will find a file called `index.html` and if you review that file you will see it contains the HTML of the page you see when you visit http://localhost:8080.
+
+#### Exercise
+Update the `index.html` to simply display “Hello, World!” and refresh your browser to see your new page.
 
