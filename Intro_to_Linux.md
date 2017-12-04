@@ -169,3 +169,94 @@ This command halts your virtual machine. All of your work is saved and the machi
 * `vagrant destroy`
 
 This command destroys your virtual machine. Your work is not saved, the machine is turned off and forgotten about for the most part. Think of this as formatting the hard drive of a computer. You can always use vagrant up to relaunch the machine but you’ll be left with the baseline Linux installation from the beginning of this course. You should not have to use this command at any time during this course unless, at some point in time, you perform a task on the virtual machine that makes it completely inoperable.
+
+## This is Not Your Computer
+Now this course isn't about vagrant or virtual machines.
+That was just some overhead work you needed to accomplish
+to get to this point.
+You're now logged into a Linux box.
+Whenever you get to this prompt, I want you to ignore all of that
+virtual machines and vagrant stuff as much as possible.
+Yes technically this computer is just a virtual machine sitting on
+your computer.
+But that's not too different than what you'll be doing as you start setting up
+your own web servers.
+Most likely you'll be given a virtual machine from a service
+provider like Amazon.
+And you're log in to it via SSH.
+This experience is pretty much the same as what you have configured now
+on your computer.
+You are remotely connected to a completely different computer.
+What does that mean?
+You can do anything here on this machine.
+And it will have no lasting impact on your personal computer.
+Remember, this is an entirely different computer.
+You can turn it off.
+Throw it away.
+Rebuild it any time you want.
+So I want you to have no fear when SSHed into that computer.
+You will not break anything on your computer.
+Now, let's get comfortable with this new computer, your Linux virtual machine.
+And see how it organizes all of the files you'll be working with.
+
+## Where are we
+Since we're working from a command line only,
+we don't have a graphical interface,
+it only makes sense that we're currently residing in some place on this computer.
+We're within some directory in which whatever we type will be executed from.
+This is called our working directory.
+Whenever you log into a Linux machine you're automatically placed in your
+user's home directory.
+We can confirm this by typing the command, pwd.
+As you can see, the result of this is /home/vagrant.
+Let's unpack this a little bit.
+The slash is the root level of the file system.
+It's the absolute highest you can go in a Linux file system.
+Everything on the machine is in some way,
+a child of the route level, usually through a variety of other directories.
+Home is a directory you'll find within all Linux systems, and
+it houses all the home directories of each user with a few exceptions.
+If we cd into this directory and
+then list its contents, we'll see that there is a directory for
+each user on this machine, including our current user, vagrant.
+So let's go back into our own home directory and see what's there.
+This is our personal space to store stuff, but
+the operating system has already placed a few files there for us.
+If we just run ls we won't get any results, so
+we'll need to provide a few flags to ls to modify it's behavior.
+We'll add the -a flag,
+which tells it to show all the files, including hidden ones.
+On a Linux system, any file that begins with a dot is considered a hidden file.
+We're going to add one more flag to the ls command.
+That is the l flag, which will list the results in long format, and
+provide a bit more information.
+Now, there's a lot of info here, and we'll eventually go over most of it.
+For now, I want you to just focus on the first character and
+the names themselves.
+If the first character is a d, that's a directory.
+If it's a dash, that's a file.
+So you can see here that the .ssh and .cache are both directories.
+The rest of these are files.
+
+## Your Home Directory
+Let's take what we've learned thus far about the Linux file system,
+particularly our home directory, and answer a few questions.
+Provide the full path to the directory you started in and
+also provide the full path to one of the files within this directory.
+Remember, a full path must start at the top-most root level,
+which means it will begin with the slash character
+
+You start in your home directory.
+So the full path /home/vagrant is the correct enter here.
+The full path to a file within this directory could be
+/home/vagrant/.bash_logout.
+You could've also used the file .bashrc, or the file .profile.
+If you're interested in learning more about what these files actually do,
+look at the instructor notes.
+
+### Instructor Notes
+A full path is also referred to as an absolute path.
+
+[Bash manual: Bash Startup Files](http://www.gnu.org/software/bash/manual/html_node/Bash-Startup-Files.html)
+
+
