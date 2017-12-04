@@ -106,3 +106,36 @@ Follow these steps to setup an environment where you can work on this course:
 3. Type `vagrant up` to download and start running the virtual machine
 
 This last step could take some time since the virtual machine files can be quite large. While you're waiting for it to download, feel free to continue with this course!
+
+## Linux Distribution Comparison
+Let's continue to compare a few different Linux distributions and
+identify their target markets.
+On the left I have provided four different and unique distributions.
+Red Hat, Ubuntu, Linux Mint and CoreOS.
+On the right, are four use cases.
+Match each letter with the use case.
+You may need to do a bit of research on your own before tackling this.
+So, I've provided some links to a variety of resources
+in the instructor notes.
+
+each of these distributions targets a
+unique population of users and use cases
+redhat is focused on large enterprises
+and corporate customers that require
+support you bun two focuses on ease of
+use on servers desktops laptops among
+many others linux mint is for desktop
+users and includes proprietary media
+support remember it's a modified version
+of you bunt to itself finally core OS is
+a newer distribution that targets
+companies building clusters of
+containerized applications
+
+### Instructor Notes
+Some places to start your research:
+
+https://distrowatch.com/ — Distro Watch has been around since 2001 as a source of news about Linux distributions and other Free and Open-Source operating systems.
+
+https://en.wikipedia.org/wiki/Comparison_of_Linux_distributions — Wikipedia article comparing current and former Linux distributions.
+
