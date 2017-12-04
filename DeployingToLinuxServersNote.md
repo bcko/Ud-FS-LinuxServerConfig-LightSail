@@ -81,6 +81,12 @@ def application(environ, start_response):
 ```
 This application will simply print return `Hello Udacity!` along with the required HTTP response headers. After saving this file you can reload `http://localhost:8080` to see your application run in all its glory!
 
+### Installing PostgreSQL
+Most web applications require persistent data storage, typically using a database server. You will now install PostgreSQL to server your data using the command `sudo apt-get install postgresql`.
 
+Since you are installing your web server and database server on the same machine, you do not need to modify your firewall settings. Your web server will communicate with the database via an internal mechanism that does not cross the boundaries of the firewall. If you were installing your database on a separate machine, you would need to modify the firewall settings on both the web server and the database server to permit these requests.
 
+#### Exercise
+Update your `/var/www/html/myapp.wsgi` application so that it successfully connects to your database, queries a table for data and presents that piece of data rather than the text `Hello World!`. You will need to create a table and populate it with data of your choosing, then query it from your app.
 
+This task is easier said than done, so use your research skills and don't be afraid to break things. Good luck!
