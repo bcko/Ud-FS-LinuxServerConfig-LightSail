@@ -3,9 +3,9 @@
 ### Introduction
 Now that you have a shiny new server that is safe and secure, it’s time to turn it into a web application server! By the end of this lesson you will accomplish the following:
 
-* Use the Apache HTTP Server to respond to HTTP requests and serve a static webpage
+* Use the [Apache HTTP Server](http://httpd.apache.org/) to respond to HTTP requests and serve a static webpage
 * Configure Apache to hand-off specific requests to Python providing the ability to develop dynamic websites
-* Setup PostgreSQL and write a simple Python application that generates a data-driven website
+* Setup [PostgreSQL](http://www.postgresql.org/) and write a simple Python application that generates a data-driven website
 
 At the end of this lesson, the response cycle will resemble this:
 
