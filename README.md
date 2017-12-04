@@ -121,3 +121,14 @@ From here, it's just like any other Linux server.
 ### 8. Project time.
 Now that you have a working instance, you can get right into the project.
 
+## Linux Server Configuration Webcasts
+Need some additional help getting started with the Linux Server Configuration Project, or simply curious and want to learn a little bit more? Watch the following Webcasts!
+
+These webcasts are recordings of live Q&A sessions and demos. As always, you should read the appropriate rubric for your project thoroughly before you begin work on any project and double check the rubric before submitting. The videos were made by Udacity's coaches. Think of them as extra supplemental materials.
+
+### The webcasts for the Linux Server Configuration Project include:
+* [SSH: How to access a remote server and edit files]()
+* [Intro to TMux](https://www.youtube.com/watch?v=hZ0cUWWixqU)
+* [Deploying a Flask App with Heroku](https://www.youtube.com/watch?v=5UNAy4GzQ5E)
+
+Happy Learning!
