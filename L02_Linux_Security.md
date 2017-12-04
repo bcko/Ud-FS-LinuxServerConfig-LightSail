@@ -209,7 +209,7 @@ Each line within this file is an entry for a single user, and
 each entry has a number of fields that are separated by colon characters.
 Let's find the entry for our current user, vagrant.
 The line looks like this,
-vagrant:x:1000:1000: :/home/vagrant:/bin/bash.
+vagrant: x:1000:1000: :/home/vagrant:/bin/bash.
 These two numbers 1000:1000 might be different on your system, but
 that's okay.
 It's nothing to worry about.
@@ -234,6 +234,7 @@ Our home directory is /home/vagrant as we already knew.
 And our default shell is bin/bash.
 
 **/etc/passwd**
+
 This is a very important file on your system! It's used to keep track of all users on the system. Run cat /etc/passwd and look at the output; each line is organized in this format:
 
 **username:password:UID:GID:UID info:home directory:command/shell**
