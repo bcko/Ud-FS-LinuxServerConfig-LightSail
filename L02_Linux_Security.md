@@ -44,7 +44,7 @@ many other cloud providers will do this for you, as well.
 If not, it's highly advised that this be one of the very first things you do when
 you're setting up a new server.
 We'll cover exactly how to do that a bit later.
->> Let's run that same command again,
+Let's run that same command again,
 except this time we'll prepend the command with this sudo command here.
 Now we see the results.
 The pseudo command ran this command as if we were root.
