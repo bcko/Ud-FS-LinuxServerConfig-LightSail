@@ -249,5 +249,258 @@ Let’s run through what each of those mean:
 6. home directory: Where the user is sent upon login. Generally /home/
 7. command/shell: The absolute path of a command or shell (usually /bin/bash). Does not have to be a shell though!
 
+## Reading /etc/passwd Entries
+The following is an entry in the systems /etc/passwd file.
+What is the following user's home directory?
+Enter your answer here.
+
+The users home directory can be found, in the second to the last field.
+In this case, that value is /var/list.
+
+## User Account Info
+Using a combination of the finger application and reading the etc/password
+file, identify the following information for the root user.
+
+User ID and the Group ID are both 0.
+In fact, this is a special rule on Linux systems.
+The root user will always have 0 as its User and Group ID.
+The Home Directory is /root.
+And the default shell is /bin/bash.
+
+## Introduction to User Management
+If you recall, when we were discussing Sudo, we mentioned that it's
+a common pattern to disable the ability to log in as root, and
+to only log in as a different user that has the ability to use Sudo.
+This is a security measure,
+since every bad guy out there knows every Linux box has a user named root.
+By disabling this account from remote log,
+in we remove a very easy attack vector.
+Now vagrant took care of this for us.
+They created a user name vagrant and
+we just type vagrant ssh from our terminal to automatically connect.
+But not every hosting provider is going to set something like this up for you.
+So let's do this ourselves.
+
+## Creating a New User
+We can create a new user by using the adduser command.
+This is an administrator feature, so we'll have to use sudo as well.
+Let's go ahead and create a new user named student.
+We'll then be asked to enter a password for the student.
+I just used the word student, but as you can see,
+in these password fields, you don't see what you're typing.
+We're then asked the number of additional questions about the user.
+All of these are optional, so you can ignore them.
+But I'm going to go ahead, and
+add a bit more additional information here in the Full Name section.
+And that's all there is to it.
+We can confirm this user was created by using the finger command.
+
+## Connecting as the New User
+Now, that we've created this user.
+Let's go ahead and connect to our server as that user.
+I've opened a new terminal here, and this terminal is on my local machine.
+I have not connected to the server yet.
+I can connect to the server using this command, ssh student@127.0.0.1 -p 2222.
+Let's break this command down a little bit.
+We've been connecting to our server using vagrant SSHwhich
+is just a shortcut for all of this.
+SSH is the application we use to remotely connect to the server.
+And 127.0.0.1 is the IP address we want to connect to.
+This is a standard IP address that always means localhost or
+the same computer I'm currently on.
+The student@ is the user we want to log in as.
+We want to log in as student@ this IP address.
+Finally, the -p 2222 flag tells us to connect using port 2222.
+When Vagrant set up our virtual machine, it automatically set up this port on
+our local machine to forward to the virtual machine.
+After hitting Enter, you may be asked an authenticity verification question.
+Just hit yes, and then you're asked for the user's password.
+Enter that, and you'll be logged in as the student.
+
+## Introduction to etc sudoers
+Now that we're logged into our server as the student user, let's try and
+run a sudo command.
+We'll try and run sudo cat /etc/passwd.
+We're asked for a [sudo] password for the student which is just the standard
+password we set for the user when we initially made the user.
+We now get this warning.
+The student is not in the sudoers file.
+This incident will be reported.
+Our students does not have permission to use the sudo command.
+So, let's fix that.
+I switch back to my other terminal where I'm logged in as vagrant.
+This is a user we know can run sudo commands.
+They can perform administrative tasks.
+Now, the list of users that are allowed to do this
+is within the etc/sudoers file.
+Let's read that file using sudo cat /etc/sudoers.
+Here we can see that the root user is listed
+along with a few groups using % and then the name of the group.
+On some systems you would just add the student user just like this,
+using a special program called visudo, that's allowed to edit this file.
+But on Ubuntu, it handles it a bit differently.
+If you look at the very bottom of this file,
+there's a here that says includedir /etc/sudoers.d.
+This command tells the system to also look through any files in etc/sudoers.d
+and include those as if they were written directly within this file.
+This is a common pattern since distribution updates could
+overwrite this file.
+And if that were to happen, you would lose all of the users you added.
+By keeping your customizations in this other directory,
+the system eliminates that risk.
+Let's see what files are currently included in that directory
+by running sudo ls etc/sudoers.d.
+We see a file here called vagrant and
+that makes sense since we're actually using sudo here.
+Even though vagrant wasn't within our etc/sudoers file itself, this file is
+being included by this directory, giving this user the permissions it needs.
+
+## Giving Sudo Access
+Let's go ahead and give our student user access to sudo themselves.
+I'll first copy the vagrant file and name it student.
+I'll then need to make a small edit to this file and
+I'll just use nano to do that.
+This second line here is actually what's doing all of the work.
+The file name doesn't mean anything,
+so we'll change the word vagrant here to student.
+There are a few more options here.
+And if you'd like to understand them all,
+I've placed a link in the instructor notes for more information.
+For now, we just want student users pseudo access to function exactly as
+the vagrant users currently does.
+After saving that file, I've switched back to my terminal where I'm logged in
+as the student and we'll try to run this sudo command again.
+And there we go, we see the results.
+Our student user now has access to use sudo.
+
+## Resetting Passwords
+We've just provided super user access to the user student, but
+if you remember, that user has an extremely simple password.
+The user themselves could reset their password using the passwd command, but
+you can't rely on that user to do so all the time.
+As a super user, you can foresee users password to expire.
+Use the man page and read through the documentation for the passwd command.
+Enter the command that you would use to force
+the student user's password to expire.
+
+You would use the command, sudo passwd -e student,
+to force the student user to reset their password the next time they login.
+Student is the user and this -e sets that password to expire.
+
+## Another Authentication Method
+You just added a powerful user to your server that authenticates using a user
+name and password.
+Hopefully, you chose a strong password since attackers will soon start running
+bots against your server attempting to guess any valid usernames and passwords.
+This is going to cause all sorts of issues for your server.
+Your logs are going to be filled with invalid login attempts, and
+if one of these hackers manages to gain access,
+well that's about the worst thing we could possibly imagine.
+There's another way to perform user authentication that's much more secure.
+It doesn't rely on passwords, which we're pretty horrible at making secure,
+since we have to make them simple enough to memorize.
+Instead, this form of authentication, called key based authentication,
+relies on physical files located on the server and
+your personal machine, the one you're logging in from.
+Before we get into key based authentication,
+let's demonstrate how public key encryption generally works.
+
+## Public Key Encryption
+Let's imagine I wanted to send a message to Cameron without anyone else being to
+see that message.
+If I were to just place this note on Cameron's desk, anyone could come by and
+read it.
+I could find a box with a lock and lock the message away but
+then I have to somehow get this key to Cameron.
+That's not going to work because anyone will be able to come by and
+grab the key.
+But what if Cameron already had a box set up on his desk,
+with his own lock, and the key to unlock that box is always in Cameron's pocket?
+He never shares that key with anyone.
+I can then come by his desk, place my message in the box, and lock it.
+And no one else can ever see that message.
+In this example, the box is called the public key.
+The box can be left out in the open, shared around without any consequence.
+The key in Cameron's pocket is called a private key.
+Cameron never lets anybody else borrow that key or see it.
+This combination of public and
+private keys allows me to securely communicate with Cameron.
+This same cryptography trick can be used to authenticate a client with a server.
+The server will send a random message to the client.
+The client will encrypt that message with their private key, and
+then send that encrypted message back to the server.
+The server will decrypt this message with their public key and
+if that value equals the same value they sent, then everything checks out and
+the client has authenticated.
+
+## Generating Key Pairs
+We'll generate our key pair on our local machine, not on our server.
+Remember, you never, ever want to share your private key with anyone else.
+It should remain firmly in your possession at all times.
+For this reason, you always generate key pairs locally.
+If you were to generate the key pair on the server,
+you cannot claim that the private key has always been private.
+We'll generate our key pair using an application called ssh-keygen.
+You will first be asked to give a file name for the key pair.
+I've given this one the name users/udacity/.ssh/linuxcourse.
+This directory here is the default directory that key pairs should exist
+in, so I advise you to keep that the same.
+But you can name it what you'd like.
+We'll then add a pass phrase to our key pair,
+just in case someone does happen to get these files.
+This pass phrase will prevent them from actually using them.
+Once done, you'll see that ssh-keygen has generated two files,
+linuxCourse and linuxCourse.pub.
+This file, linuxCourse.pub,
+is what we'll place on our server to enable key based authentication.
+
+## Supported Key Types
+The ssh-keygen application can generate key pairs of various types.
+The key you just generated was an RSA key,
+which is the default type if you don't specifically define a different type.
+Read through the ssh-keygen man page and
+determine what other key types are supported by the SSH version 2 protocol.
+
+The SSH version two protocol supports the DSA, ECDSA,
+ED25519, and RSA key types.
+MD5 and SHA256 are hashing algorithms that are not suitable for
+public key encryption.
+
+## Installing a Public Key
+Now that we've generated our key pair locally, we still need to place
+the public key on our remote server, so SSH can use it to log in.
+There are multiple ways to do this and there are even some applications
+that will do most of the work for you, but we're going to do it the manual way.
+First we want to make sure we're logged into our server as the student.
+I'll first create a directory called .ssh using the mkdir command
+within my home directory.
+This is a special directory where all of your key related files must be stored.
+I'll then create a new file within this directory called authorized keys.
+This is another special file that will store all of the public keys
+that this account is allowed to use for
+authentication, with one key per line in that file.
+Now, back on my local machine I've read out the contents of linuxcourse.pub,
+and I just want to copy that.
+Then, back on my server as the student user,
+I went to edit this authorized key file.
+And in here I'll just paste in that content and save it.
+The final thing we need to do is set up some specific file permissions
+on the authorized key file and the SSH directory.
+This is a security measure that SSH enforces to ensure
+other users cannot gain access to your account.
+We'll discuss file permissions in a lot more detail shortly.
+For now we'll set the permissions using the following commands.
+We'll run chmod 700 on our SSH directory, and
+chmod 644 on the authorized keys file.
+Finally we're all done and we can now log in as the student user, but
+instead of using user name and password.
+This I flag and the definition here of what key pair we want to use
+will allow me to login using that key pair.
+If you set a passphrase for your key pair, you'll be asked to enter that.
+But, once you're done, you'll see you've logged into the server and
+you did not have to enter your remote password for this user.
+
+## Forcing Key Based Authentication
+
 
 
