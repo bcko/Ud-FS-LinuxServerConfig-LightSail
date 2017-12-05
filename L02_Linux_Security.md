@@ -59,24 +59,13 @@ And testing everything in a non-production environment before performing similar
 
 ## Other Package Related Tasks
 
-The apt get application is your main interface to a ton of package related
-functionality.
-We can check out everything you can do by reading the man page for
-it with this command, man apt get.
-We see here it can install packages, it can even remove packages,
-it can do all sorts of stuff.
+The apt get application is your main interface to a ton of package related functionality.
+We can check out everything you can do by reading the man page for it with this command, `man apt-get`.
+We see here it can install packages, it can even remove packages, it can do all sorts of stuff.
 For now, let's see if there are some packages that are no
 longer required that we can just automatically remove.
-We'll do this with the command apt-get autoremove.
-And once again, it's an administrative task that has to be run as root.
-So we use sudo.
-After a few seconds,
-we're returned back to our prompt to let us know everything is all done.
-Now let's use apt-get to install new software.
-We'll install an application called finger.
-It's something we'll use a little bit later on when working with users.
-We do this by typing the command apt-get install finger, and
-once again using sudo.
+We'll do this with the command `apt-get autoremove`.
+We'll install an application called finger by typing the command `sudo apt-get install finger`, 
 
 ## Discovering Packages
 
