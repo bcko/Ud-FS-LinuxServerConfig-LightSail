@@ -2,17 +2,13 @@
 
 ## Intro to Linux Security
 
-Now that you're going to be putting another computer out there on the Internet, accessible by anyone, we need to discuss security.
-Not only for your own application's sake, but for everyone else out there as well. If a bad guy gets access to your server, they can do anything they want with it. Send spam, launch denial of service attacks, and so much more.
-In this lesson we'll discuss a number of security-related topics, including managing users, packages or
+- Now that you're going to be putting another computer out there on the Internet, accessible by anyone, we need to discuss security.
+- If a bad guy gets access to your server, they can do anything they want with it. Send spam, launch denial of service attacks, and so much more.
+- we'll discuss a number of security-related topics, including managing users, packages or
 the software installed on the server, various methods of authenticating users, how Linux manages file permissions, and finally, how to configure a firewall.
 
 ## The Rule of Least Privilege
-
-One of the most important rules in security is the rule of least privilege. Put simply, this means a user or an application only has enough permission to do its job, nothing extra. You've already experienced this within your virtual machine, although you may not be aware of it yet.
-When we access our virtual machine, using `vagrant ssh`. We're logged in as a standard user named, vagrant.
-Let's try running a command only an administrative user would be allowed to run.
-Let's list all of the files with in the ubuntu users ssh directory. You see, we get this error here, permission denied. Only the ubuntu user or the root user can read the files within this directory. You may be thinking, but I am the administrator of this virtual machine. I am root. So how do I actually log in as root? It's time to learn about super user.
+- a user or an application only has enough permission to do its job, nothing extra. 
 
 ## Becoming a Super User
 
@@ -25,7 +21,7 @@ Now we see the results. The sudo command ran this command as if we were root.
 
 ## sudo vs su
 
-It's typically regarded as a best practice that you not use the SU command.
+It's typically regarded as a best practice that you not use the `su` command.
 Why? The rule of least privilege that we discussed earlier.
 Do you really need to switch your entire working context over to the root user to run a single, or even a few, commands?
 What happens if you forget that you are currently within SU? You could potentially do some extremely damaging operations, and there's no safety net there to warn you when doing so.
