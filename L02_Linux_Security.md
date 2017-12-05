@@ -40,34 +40,22 @@ This is the package's list for your current version of Ubuntu.
 One of the most important and simplest ways to ensure your system is secure is to keep your software up to date with new releases. Because Linux systems focus on reliability and they run a variety of complex applications that have numerous dependencies of their own, most Linux distributions do not auto-update the software installed on the system.
 You'll need to do this yourself and test your apps to make sure any recent updates don't break your application.
 The first step to upgrading your installed software is to update your package source list.
-We do this with the command `sudo apt-get update`.
-See the sudo there? We have to run this as the root user. The update command will run through all of the repositories we saw within our `etc/apt/sources.list` file, and it will check to see what all software is
-available and what those version numbers are.
+We do this with the command `sudo apt-get update`. The update command will run through all of the repositories we saw within our `etc/apt/sources.list` file, and it will check to see what all software is available and what those version numbers are.
 This command doesn't actually perform any changes to the software on your system.
 It just makes sure your system is aware of the latest information stored within all of these repositories that you're making use of.
 
 ## Upgrading Installed Packages
 
 Now that our system is aware of what all software is available, and the most recent version numbers, it's now time for us to actually update the software.
-We do this with the command, `sudo apt-get upgrade`.
-Once again, we have to use sudo. Remember this is an administrative task that we have to run as the root user.
+`sudo apt-get upgrade`.
 After a few seconds, you'll be presented with a list of everything that's going
 to change on your system.
-And this question, do you want to continue, yes or no?
-We'll say yes in a second, but let's review this information real quick.
-Here we have a list of packages that will be upgraded.
-Some of these names look familiar.
-See a name python here, python down here.
-But others, not so much.
 This early in setting up a new machine, you can be pretty safe in just accepting
 that the system is always making the best decisions for you.
 Later on, when you actually have your web application running on this system,
 and it's serving your users.
 You're going to want to take more care in reviewing this list.
-And testing everything in a non-production environment
-before performing similar operations on your production server.
-For now, we'll just hit yes and we'll go take a coffee break as
-all of these new versions are downloaded and installed.
+And testing everything in a non-production environment before performing similar operations on your production server.
 
 ## Other Package Related Tasks
 
