@@ -69,20 +69,8 @@ We'll install an application called finger by typing the command `sudo apt-get i
 
 ## Discovering Packages
 
-So how did I know the package I wanted to install was called Finger?
-Most of the time the package names are pretty easy to guess, but
-not all the time.
-For instance Python has two extremely popular versions,
-you have Python 2 and Python 3.
-It may be a bit more difficult to figure out what the name of that
-package would be.
-Fortunately, each distribution tends to publish an easy to browse version
-of their repositories.
+Fortunately, each distribution tends to publish an easy to browse version of their repositories.
 For Ubuntu, you can search for packages at packages.ubuntu.com.
-If I were to search for Python and I look at this top result that says 2.7,
-so that's Python version 2.
-If I search for Python 3 and
-I look at the top result it says 3.40, so I know that's Python version 3.
 
 ## Using Package Search
 
