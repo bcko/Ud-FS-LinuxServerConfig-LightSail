@@ -10,89 +10,56 @@ the software installed on the server, various methods of authenticating users, h
 ## The Rule of Least Privilege
 
 One of the most important rules in security is the rule of least privilege. Put simply, this means a user or an application only has enough permission to do its job, nothing extra. You've already experienced this within your virtual machine, although you may not be aware of it yet.
-When we access our virtual machine, using vagrant ssh. We're logged in as a standard user named, vagrant.
+When we access our virtual machine, using `vagrant ssh`. We're logged in as a standard user named, vagrant.
 Let's try running a command only an administrative user would be allowed to run.
 Let's list all of the files with in the ubuntu users ssh directory. You see, we get this error here, permission denied. Only the ubuntu user or the root user can read the files within this directory. You may be thinking, but I am the administrator of this virtual machine. I am root. So how do I actually log in as root? It's time to learn about super user.
 
 ## Becoming a Super User
 
 Since every Linux machine comes with the user name root and that user is super powerful, they can do anything they want on this machine. It's very common to disable the ability to remotely log in as root.
-Instead, we'll log in as a user we create, and then we can run individual commands as root by using another command.
-This is to make any potential attacker's job a little more difficult
-by eliminating the username that they already know exists on this on this box.
-Our vagrant virtual machine has already set up the security pattern for us and
-many other cloud providers will do this for you, as well.
-If not, it's highly advised that this be one of the very first things you do when
-you're setting up a new server.
+Instead, we'll log in as a user we create, and then we can run individual commands as root by using another command. This is to make any potential attacker's job a little more difficult by eliminating the username that they already know exists on this on this box. Our vagrant virtual machine has already set up the security pattern for us and many other cloud providers will do this for you, as well.
+If not, it's highly advised that this be one of the very first things you do when you're setting up a new server.
 We'll cover exactly how to do that a bit later.
-Let's run that same command again,
-except this time we'll prepend the command with this sudo command here.
-Now we see the results.
-The pseudo command ran this command as if we were root.
+Let's run that same command again, except this time we'll prepend the command with this sudo command here.
+Now we see the results. The sudo command ran this command as if we were root.
 
 ## sudo vs su
 
-It's typically regarded as a best practice that you not
-use the SU command.
-Why?
-The rule of least privilege that we discussed earlier.
-Do you really need to switch your entire working context over to the root user
-to run a single, or even a few, commands?
-What happens if you forget that you are currently within SU?
-You could potentially do some extremely damaging operations, and
-there's no safety net there to warn you when doing so.
-Now, not every user has the ability to work as the superuser.
-You have to give that user those permissions specifically.
-We'll cover that in more detail when we start adding new users.
-For now, you know how to perform operations as the root user, and that's
-all we need to start managing software known as packages on this machine.
-So let's dive into that a bit.
+It's typically regarded as a best practice that you not use the SU command.
+Why? The rule of least privilege that we discussed earlier.
+Do you really need to switch your entire working context over to the root user to run a single, or even a few, commands?
+What happens if you forget that you are currently within SU? You could potentially do some extremely damaging operations, and there's no safety net there to warn you when doing so.
+Now, not every user has the ability to work as the superuser. You have to give that user those permissions specifically. We'll cover that in more detail when we start adding new users. For now, you know how to perform operations as the root user, and that's all we need to start managing software known as packages on this machine. So let's dive into that a bit.
 
 ## Package Source Lists
 
-When you need new software, what do you typically do?
-You might visit an app store like this and download it or
+When you need new software, what do you typically do? You might visit an app store like this and download it or
 you could actually walk into a store and buy a physical copy.
-You have a lot of different options.
-You might even say you have a list of options.
-Now how often have you seen software for Linux sitting up on a store shelf?
-Not very often, if at all.
-But we still have a list of various places we can go to get software.
+You have a lot of different options. You might even say you have a list of options.
+Now how often have you seen software for Linux sitting up on a store shelf? Not very often, if at all. But we still have a list of various places we can go to get software. 
+
 This is called a package source list.
-Let's take a look.
-All of your available package sources are listed in this file
-/etc/app/sources.list.
-Remember when we were discussing distributions,
+Let's take a look. All of your available package sources are listed in this file
+`/etc/apt/sources.list`
+Remember when we were discussing distributions, 
 we said each one approves and releases packages in their own way and
 that's one of the big ways in which they differ.
 This is the package's list for your current version of Ubuntu.
 As you skim through the file, you'll see some pretty recognizable parts.
 We see a URL here and the word trusty looks familiar.
 That's the code name for the version of Ubuntu we're running.
-We know Ubuntu is also based off of Debian, so
-that's probably what this deb stands for here.
+We know Ubuntu is also based off of Debian, so that's probably what this deb stands for here.
 This is a list of software repositories that Ubuntu set up for us automatically.
-There are a lot in this list and each of these would be referenced
-when you try to update or install new software.
-Speaking of which, let's go ahead and
-make sure that all of our software is up to date.
+There are a lot in this list and each of these would be referenced when you try to update or install new software.
+Speaking of which, let's go ahead and make sure that all of our software is up to date.
 
 ## Updating Available Package Lists
 
-One of the most important and simplest ways to ensure your system is secure
-is to keep your software up to date with new releases.
-Because Linux systems focus on reliability and they run a variety of
-complex applications that have numerous dependencies of their own, most Linux
-distributions do not auto-update the software installed on the system.
-You'll need to do this yourself and
-test your apps to make sure any recent updates don't break your application.
-The first step to upgrading your installed software is to update your
-package source list.
-We do this with the command sudo apt-get update.
-See the sudo there?
-We have to run this as the root user.
-The update command will run through all of the repositories we saw within our
-etc/app/sources.list file, and it will check to see what all software is
+One of the most important and simplest ways to ensure your system is secure is to keep your software up to date with new releases. Because Linux systems focus on reliability and they run a variety of complex applications that have numerous dependencies of their own, most Linux distributions do not auto-update the software installed on the system.
+You'll need to do this yourself and test your apps to make sure any recent updates don't break your application.
+The first step to upgrading your installed software is to update your package source list.
+We do this with the command `sudo apt-get update`.
+See the sudo there? We have to run this as the root user. The update command will run through all of the repositories we saw within our `etc/apt/sources.list` file, and it will check to see what all software is
 available and what those version numbers are.
 This command doesn't actually perform any changes to the software
 on your system.
