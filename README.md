@@ -3,9 +3,10 @@ Udacity Full Stack Web Developer Nanodegree Project : Linux Server Configuration
 
 ## IP address and SSH port
 * Public IP : 18.217.154.79
-* SSH port : 
+* SSH port : 2200
 
 ## Complete URL to hosted web application
+
 
 ## summary of software installed and configuration changes made
 ```bash
@@ -13,6 +14,7 @@ Udacity Full Stack Web Developer Nanodegree Project : Linux Server Configuration
 sudo apt update && sudo apt upgrade
 
 # Change the SSH port from 22 to 2200
+sudo nano /etc/ssh/sshd_config
 
 # configure the Lightsail firewall to allow it
 
@@ -26,6 +28,7 @@ sudo apt update && sudo apt upgrade
 # Connect using those instructions and then follow the rest of the steps.
 
 # Create a new user account named grader.
+sudo adduser grader
 
 # Give grader the permission to sudo.
 
@@ -46,7 +49,8 @@ sudo apt-get install libapache2-mod-wsgi-py3.
 # Create a new database user named catalog that has limited permissions 
 # to your catalog application database.
 
-# Install git.
+# Install git
+sudo apt install git
 
 # Clone and setup your Item Catalog project from the Github repository 
 # you created earlier in this Nanodegree program.
