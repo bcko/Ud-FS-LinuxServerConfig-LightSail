@@ -41,9 +41,7 @@ Now how often have you seen software for Linux sitting up on a store shelf? Not 
 This is called a package source list.
 Let's take a look. All of your available package sources are listed in this file
 `/etc/apt/sources.list`
-Remember when we were discussing distributions, 
-we said each one approves and releases packages in their own way and
-that's one of the big ways in which they differ.
+Remember when we were discussing distributions, we said each one approves and releases packages in their own way and that's one of the big ways in which they differ.
 This is the package's list for your current version of Ubuntu.
 As you skim through the file, you'll see some pretty recognizable parts.
 We see a URL here and the word trusty looks familiar.
@@ -61,18 +59,14 @@ The first step to upgrading your installed software is to update your package so
 We do this with the command `sudo apt-get update`.
 See the sudo there? We have to run this as the root user. The update command will run through all of the repositories we saw within our `etc/apt/sources.list` file, and it will check to see what all software is
 available and what those version numbers are.
-This command doesn't actually perform any changes to the software
-on your system.
-It just makes sure your system is aware of the latest information stored
-within all of these repositories that you're making use of.
+This command doesn't actually perform any changes to the software on your system.
+It just makes sure your system is aware of the latest information stored within all of these repositories that you're making use of.
 
 ## Upgrading Installed Packages
 
-Now that our system is aware of what all software is available, and the most
-recent version numbers, it's now time for us to actually update the software.
-We do this with the command, sudo apt-get upgrade.
-Once again, we have to use sudo.
-Remember this is an administrative task that we have to run as the root user.
+Now that our system is aware of what all software is available, and the most recent version numbers, it's now time for us to actually update the software.
+We do this with the command, `sudo apt-get upgrade`.
+Once again, we have to use sudo. Remember this is an administrative task that we have to run as the root user.
 After a few seconds, you'll be presented with a list of everything that's going
 to change on your system.
 And this question, do you want to continue, yes or no?
