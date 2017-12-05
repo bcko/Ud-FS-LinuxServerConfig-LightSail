@@ -46,16 +46,12 @@
 
 ## Upgrading Installed Packages
 
-Now that our system is aware of what all software is available, and the most recent version numbers, it's now time for us to actually update the software.
-`sudo apt-get upgrade`.
-After a few seconds, you'll be presented with a list of everything that's going
-to change on your system.
-This early in setting up a new machine, you can be pretty safe in just accepting
-that the system is always making the best decisions for you.
-Later on, when you actually have your web application running on this system,
-and it's serving your users.
-You're going to want to take more care in reviewing this list.
-And testing everything in a non-production environment before performing similar operations on your production server.
+- our system is aware of what all software is available, and the most recent version numbers, 
+- `sudo apt-get upgrade`.
+- you'll be presented with a list of everything that's going to change on your system.
+- when setting up a new machine, you can be pretty safe in just accepting that the system is always making the best decisions for you.
+- When running your web application, you want to take more care in reviewing this list.
+- test everything in a non-production environment before performing similar operations on your production server.
 
 ## Other Package Related Tasks
 
