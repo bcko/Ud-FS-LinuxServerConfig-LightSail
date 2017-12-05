@@ -1,42 +1,23 @@
 # Linux Security
 
 ## Intro to Linux Security
-Now that you're going to be putting another computer out there on
-the Internet, accessible by anyone, we need to discuss security.
-Not only for your own application's sake, but
-for everyone else out there as well.
-If a bad guy gets access to your server, they can do anything they want with it.
-Send spam, launch denial of service attacks, and so much more.
-In this lesson we'll discuss a number of security-related topics,
-including managing users, packages or
-the software installed on the server, various methods of authenticating users,
-how Linux manages file permissions, and finally, how to configure a firewall.
+
+Now that you're going to be putting another computer out there on the Internet, accessible by anyone, we need to discuss security.
+Not only for your own application's sake, but for everyone else out there as well. If a bad guy gets access to your server, they can do anything they want with it. Send spam, launch denial of service attacks, and so much more.
+In this lesson we'll discuss a number of security-related topics, including managing users, packages or
+the software installed on the server, various methods of authenticating users, how Linux manages file permissions, and finally, how to configure a firewall.
 
 ## The Rule of Least Privilege
-One of the most important rules in security is the rule of least privilege.
-Put simply, this means a user or
-an application only has enough permission to do its job, nothing extra.
-You've already experienced this within your virtual machine,
-although you may not be aware of it yet.
-When we access our virtual machine, using vagrant ssh.
-We're logged in as a standard user named, vagrant.
-Let's try running a command only an administrative user would be
-allowed to run.
-Let's list all of the files with in the ubuntu users ssh directory.
-You see, we get this error here, permission denied.
-Only the ubuntu user or
-the root user can read the files within this directory.
-You may be thinking, but I am the administrator of this virtual machine.
-I am root.
-So how do I actually log in as root?
-It's time to learn about super user.
+
+One of the most important rules in security is the rule of least privilege. Put simply, this means a user or an application only has enough permission to do its job, nothing extra. You've already experienced this within your virtual machine, although you may not be aware of it yet.
+When we access our virtual machine, using vagrant ssh. We're logged in as a standard user named, vagrant.
+Let's try running a command only an administrative user would be allowed to run.
+Let's list all of the files with in the ubuntu users ssh directory. You see, we get this error here, permission denied. Only the ubuntu user or the root user can read the files within this directory. You may be thinking, but I am the administrator of this virtual machine. I am root. So how do I actually log in as root? It's time to learn about super user.
 
 ## Becoming a Super User
-Since every Linux machine comes with the user name root and
-that user is super powerful, they can do anything they want on this machine.
-It's very common to disable the ability to remotely log in as root.
-Instead, we'll log in as a user we create, and
-then we can run individual commands as root by using another command.
+
+Since every Linux machine comes with the user name root and that user is super powerful, they can do anything they want on this machine. It's very common to disable the ability to remotely log in as root.
+Instead, we'll log in as a user we create, and then we can run individual commands as root by using another command.
 This is to make any potential attacker's job a little more difficult
 by eliminating the username that they already know exists on this on this box.
 Our vagrant virtual machine has already set up the security pattern for us and
@@ -50,6 +31,7 @@ Now we see the results.
 The pseudo command ran this command as if we were root.
 
 ## sudo vs su
+
 It's typically regarded as a best practice that you not
 use the SU command.
 Why?
@@ -67,6 +49,7 @@ all we need to start managing software known as packages on this machine.
 So let's dive into that a bit.
 
 ## Package Source Lists
+
 When you need new software, what do you typically do?
 You might visit an app store like this and download it or
 you could actually walk into a store and buy a physical copy.
@@ -95,6 +78,7 @@ Speaking of which, let's go ahead and
 make sure that all of our software is up to date.
 
 ## Updating Available Package Lists
+
 One of the most important and simplest ways to ensure your system is secure
 is to keep your software up to date with new releases.
 Because Linux systems focus on reliability and they run a variety of
@@ -116,6 +100,7 @@ It just makes sure your system is aware of the latest information stored
 within all of these repositories that you're making use of.
 
 ## Upgrading Installed Packages
+
 Now that our system is aware of what all software is available, and the most
 recent version numbers, it's now time for us to actually update the software.
 We do this with the command, sudo apt-get upgrade.
@@ -140,6 +125,7 @@ For now, we'll just hit yes and we'll go take a coffee break as
 all of these new versions are downloaded and installed.
 
 ## Other Package Related Tasks
+
 The apt get application is your main interface to a ton of package related
 functionality.
 We can check out everything you can do by reading the man page for
@@ -160,6 +146,7 @@ We do this by typing the command apt-get install finger, and
 once again using sudo.
 
 ## Discovering Packages
+
 So how did I know the package I wanted to install was called Finger?
 Most of the time the package names are pretty easy to guess, but
 not all the time.
@@ -176,6 +163,7 @@ If I search for Python 3 and
 I look at the top result it says 3.40, so I know that's Python version 3.
 
 ## Using Package Search
+
 Let's get a bit more practice searching for
 packages using Ubuntu's package website.
 Use the site to search for the package names for Apache HTTP Server,
@@ -186,6 +174,7 @@ You don't need to include the full app to get command, just the package name.
 The correct answers are apache2, postgresql, and memcached.
 
 ## Using Finger
+
 Now that we've installed Finger, let's use it.
 This application will look up various pieces of information about a user, and
 display it in an easy to read format.
@@ -199,6 +188,7 @@ Type finger vagrant, and you'll see some additional information
 including our home directory and what shell we're using.
 
 ## Introduction to /etc/passwd
+
 So where is finger retrieving all of this information such as our user name,
 our home directories, the shell?
 Much of this information is found within a file that stores information
@@ -242,14 +232,15 @@ This is a very important file on your system! It's used to keep track of all use
 Let’s run through what each of those mean:
 
 1. username: the user’s login name
-2. password: the password, will simply be an x if it’s encrypted
-3. user ID (UID): the user’s ID number in the system. 0 is root, 1-99 are for predefined users, and 100-999 are for other system accounts
-4. group ID (GID): Primary group ID, stored in /etc/group.
-5. user ID info: Metadata about the user; phone, email, name, etc.
-6. home directory: Where the user is sent upon login. Generally /home/
-7. command/shell: The absolute path of a command or shell (usually /bin/bash). Does not have to be a shell though!
+1. password: the password, will simply be an x if it’s encrypted
+1. user ID (UID): the user’s ID number in the system. 0 is root, 1-99 are for predefined users, and 100-999 are for other system accounts
+1. group ID (GID): Primary group ID, stored in /etc/group.
+1. user ID info: Metadata about the user; phone, email, name, etc.
+1. home directory: Where the user is sent upon login. Generally /home/
+1. command/shell: The absolute path of a command or shell (usually /bin/bash). Does not have to be a shell though!
 
 ## Reading /etc/passwd Entries
+
 The following is an entry in the systems /etc/passwd file.
 What is the following user's home directory?
 Enter your answer here.
@@ -258,6 +249,7 @@ The users home directory can be found, in the second to the last field.
 In this case, that value is /var/list.
 
 ## User Account Info
+
 Using a combination of the finger application and reading the etc/password
 file, identify the following information for the root user.
 
@@ -268,6 +260,7 @@ The Home Directory is /root.
 And the default shell is /bin/bash.
 
 ## Introduction to User Management
+
 If you recall, when we were discussing Sudo, we mentioned that it's
 a common pattern to disable the ability to log in as root, and
 to only log in as a different user that has the ability to use Sudo.
@@ -282,6 +275,7 @@ But not every hosting provider is going to set something like this up for you.
 So let's do this ourselves.
 
 ## Creating a New User
+
 We can create a new user by using the adduser command.
 This is an administrator feature, so we'll have to use sudo as well.
 Let's go ahead and create a new user named student.
@@ -296,6 +290,7 @@ And that's all there is to it.
 We can confirm this user was created by using the finger command.
 
 ## Connecting as the New User
+
 Now, that we've created this user.
 Let's go ahead and connect to our server as that user.
 I've opened a new terminal here, and this terminal is on my local machine.
@@ -318,6 +313,7 @@ Just hit yes, and then you're asked for the user's password.
 Enter that, and you'll be logged in as the student.
 
 ## Introduction to etc sudoers
+
 Now that we're logged into our server as the student user, let's try and
 run a sudo command.
 We'll try and run sudo cat /etc/passwd.
@@ -356,6 +352,7 @@ Even though vagrant wasn't within our etc/sudoers file itself, this file is
 being included by this directory, giving this user the permissions it needs.
 
 ## Giving Sudo Access
+
 Let's go ahead and give our student user access to sudo themselves.
 I'll first copy the vagrant file and name it student.
 I'll then need to make a small edit to this file and
@@ -374,6 +371,7 @@ And there we go, we see the results.
 Our student user now has access to use sudo.
 
 ## Resetting Passwords
+
 We've just provided super user access to the user student, but
 if you remember, that user has an extremely simple password.
 The user themselves could reset their password using the passwd command, but
@@ -388,6 +386,7 @@ to force the student user to reset their password the next time they login.
 Student is the user and this -e sets that password to expire.
 
 ## Another Authentication Method
+
 You just added a powerful user to your server that authenticates using a user
 name and password.
 Hopefully, you chose a strong password since attackers will soon start running
@@ -406,6 +405,7 @@ Before we get into key based authentication,
 let's demonstrate how public key encryption generally works.
 
 ## Public Key Encryption
+
 Let's imagine I wanted to send a message to Cameron without anyone else being to
 see that message.
 If I were to just place this note on Cameron's desk, anyone could come by and
@@ -434,6 +434,7 @@ if that value equals the same value they sent, then everything checks out and
 the client has authenticated.
 
 ## Generating Key Pairs
+
 We'll generate our key pair on our local machine, not on our server.
 Remember, you never, ever want to share your private key with anyone else.
 It should remain firmly in your possession at all times.
@@ -455,6 +456,7 @@ This file, linuxCourse.pub,
 is what we'll place on our server to enable key based authentication.
 
 ## Supported Key Types
+
 The ssh-keygen application can generate key pairs of various types.
 The key you just generated was an RSA key,
 which is the default type if you don't specifically define a different type.
@@ -467,6 +469,7 @@ MD5 and SHA256 are hashing algorithms that are not suitable for
 public key encryption.
 
 ## Installing a Public Key
+
 Now that we've generated our key pair locally, we still need to place
 the public key on our remote server, so SSH can use it to log in.
 There are multiple ways to do this and there are even some applications
@@ -501,6 +504,7 @@ But, once you're done, you'll see you've logged into the server and
 you did not have to enter your remote password for this user.
 
 ## Forcing Key Based Authentication
+
 The final thing you'll want to do to secure the authentication process
 is to disable the password base logins.
 This will force all of your users to only be able to login using a key pair.
@@ -525,6 +529,7 @@ Now all users will be forced to log in using a key pair.
 SSH will not allow users to log in with a user name and password any longer.
 
 ## Introduction to File Permissions
+
 A bit earlier you changed some permissions on the authorized key file
 and the .ssh directory using a command called chmod.
 But what exactly does that mean?
@@ -549,6 +554,7 @@ execute it.
 Finally, everyone can read this file, but they cannot write or execute it.
 
 ## Owners and Groups
+
 So how do we identify who the owner in the group are?
 If we look back at our directory listing,
 we'll see two columns, here in the middle.
@@ -584,6 +590,7 @@ and we even entered the directory because we have execute.
 We just can't write.
 
 ## Identifying Owners and Groups
+
 Explore the file system a bit and identify the owner and
 group for each of these files or directories listed here.
 
@@ -593,6 +600,7 @@ But some of them have different group owners.
 /var/log has a group syslog, and this file has a group of root.
 
 ## Octal Permissions
+
 So we know permissions are represented as Rs, Ws and Xs, indicating read,
 write and execute.
 But when we changed the permissions of some files earlier we used numbers.
@@ -621,6 +629,7 @@ And for everyone we have a value of 4.
 To represent this permission set in octal form, we'd use the value 644.
 
 ## Octal File Permissions
+
 Convert these symbol-based file permissions to their octal form.
 Remember, read is four, write is two,
 execute is one, and nothing would be zero.
@@ -633,6 +642,7 @@ It just represents that this is a directory.
 The final one is 600.
 
 ## chgrp and chown
+
 We've already seen how to change file permissions using the chmod command.
 But what if you need to change a files group or owner?
 There are also commands that allow you to do that.
@@ -664,11 +674,13 @@ when you might need to use them.
 Now let's move on to the last security topic we'll discuss, firewalls.
 
 ### Errata
+
 The `.bash_history` file is created by the `bash` shell the first time you log out of your Linux system. This means that if you are logging into the system for the first time, it won't have been created yet. If you log out and log back in (e.g. `vagrant ssh` if you're using Vagrant here) then the file will be created.
 
 You can also experiment with `chown` and `chgrp` using another file. To create an empty file named `testfile`, use the command `touch testfile`.
 
 ## Intro to Ports
+
 You now have a server sitting out there on the Internet and this server is doing
 a lot of different things and talking to other devices on the Internet.
 Depending on your application it could be responding to web requests,
@@ -686,8 +698,10 @@ using an application called the firewall.
 We'll do that shortly, but for now let's explore some common ports.
 
 ## Default Ports for Popular Services
+
 Below are a few of the most common services a web server would run.
 Identify the default port for each of these services.
+
 - HTTP runs on port 80.
 - HTTPS is 443.
 - SSH is 22.
@@ -696,6 +710,7 @@ Identify the default port for each of these services.
 - And SMTP is 25.
 
 ## Intro to Firewalls
+
 Just because our server can listen on every single port, for
 any type of request, that doesn't mean we should.
 The rule of least privilege, which we've discussed throughout this entire lesson,
@@ -716,6 +731,7 @@ that we know we're not interested in.
 Let's go back to our terminal and start configuring our server's firewall now.
 
 ## Intro to UFW
+
 Ubuntu comes with a firewall pre-installed called ufw, but
 it's not currently active.
 You can verify this by typing command, sudo ufw status.
@@ -742,6 +758,7 @@ It's now time for us to start configuring the firewall to support
 the various ports and the applications we know we'll need.
 
 ## Configuring Ports in UFW
+
 Let's start allowing the ports we know we'll need for
 the applications our server will be supporting.
 First and foremost we know we'll need to support SSH so
@@ -769,6 +786,7 @@ by using the sudo ufw status command.
 We'll see all of our rules here and that our firewall is currently active.
 
 ## Conclusion
+
 Congratulations.
 You now have a server updated and
 configured, sitting out there on the wild west that is the internet.
@@ -788,9 +806,8 @@ This is your own little piece of the Internet.
 
 Here are a few tutorials that will walk you through how to configure your server in a variety of use cases:
 
-* ["LAMP" Stack (Linux, Apache, MySQL, PHP)](https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-on-ubuntu-14-04)
-* ["LEMP" Stack (Linux, nginx, MySQL, PHP)](https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-on-ubuntu-14-04)
-* [PEPS Mail and File Storage](https://www.digitalocean.com/community/tutorials/how-to-run-your-own-mail-server-and-file-storage-with-peps-on-ubuntu-14-04)
-* [Mail-in-a-Box Email Server](https://www.digitalocean.com/community/tutorials/how-to-run-your-own-mail-server-with-mail-in-a-box-on-ubuntu-14-04)
-* [Lita IRC Chat Bot](https://www.digitalocean.com/community/tutorials/how-to-install-the-lita-chat-bot-for-irc-on-ubuntu-14-04)
-
+- ["LAMP" Stack (Linux, Apache, MySQL, PHP)](https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-on-ubuntu-14-04)
+- ["LEMP" Stack (Linux, nginx, MySQL, PHP)](https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-on-ubuntu-14-04)
+- [PEPS Mail and File Storage](https://www.digitalocean.com/community/tutorials/how-to-run-your-own-mail-server-and-file-storage-with-peps-on-ubuntu-14-04)
+- [Mail-in-a-Box Email Server](https://www.digitalocean.com/community/tutorials/how-to-run-your-own-mail-server-with-mail-in-a-box-on-ubuntu-14-04)
+- [Lita IRC Chat Bot](https://www.digitalocean.com/community/tutorials/how-to-install-the-lita-chat-bot-for-irc-on-ubuntu-14-04)
