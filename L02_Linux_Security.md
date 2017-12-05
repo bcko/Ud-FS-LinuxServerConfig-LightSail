@@ -11,24 +11,22 @@
    - how to configure a firewall.
 
 ## The Rule of Least Privilege
-- a user or an application only has enough permission to do its job, nothing extra. 
+- Definition: a user or an application only has enough permission to do its job, nothing extra. 
 
 ## Becoming a Super User
 
-Since every Linux machine comes with the user name root and that user is super powerful, they can do anything they want on this machine. It's very common to disable the ability to remotely log in as root.
-Instead, we'll log in as a user we create, and then we can run individual commands as root by using another command. This is to make any potential attacker's job a little more difficult by eliminating the username that they already know exists on this on this box. Our vagrant virtual machine has already set up the security pattern for us and many other cloud providers will do this for you, as well.
-If not, it's highly advised that this be one of the very first things you do when you're setting up a new server.
-We'll cover exactly how to do that a bit later.
-Let's run that same command again, except this time we'll prepend the command with this sudo command here.
-Now we see the results. The sudo command ran this command as if we were root.
+- every Linux machine comes with the user name root 
+- root user can do anything they want on this machine. 
+- It's very common to disable the ability to remotely log in as root.
+- Instead, we'll log in as a user we create, and then we can run individual commands as root by using another command. 
+- This is to make any potential attacker's job a little more difficult by eliminating the username that they already know exists on this on this box. 
+- it's highly advised that this be one of the very first things you do when you're setting up a new server.
 
 ## sudo vs su
 
-It's typically regarded as a best practice that you not use the `su` command.
-Why? The rule of least privilege that we discussed earlier.
-Do you really need to switch your entire working context over to the root user to run a single, or even a few, commands?
-What happens if you forget that you are currently within SU? You could potentially do some extremely damaging operations, and there's no safety net there to warn you when doing so.
-Now, not every user has the ability to work as the superuser. You have to give that user those permissions specifically. We'll cover that in more detail when we start adding new users. For now, you know how to perform operations as the root user, and that's all we need to start managing software known as packages on this machine. So let's dive into that a bit.
+- It's typically regarded as a best practice that you not use the `su` command.
+- if you forget that you are currently within SU, You could potentially do some extremely damaging operations, and there's no safety net there to warn you when doing so.
+- not every user has the ability to work as the superuser. You have to give that user those permissions specifically. 
 
 ## Package Source Lists
 
