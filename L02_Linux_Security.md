@@ -1,11 +1,13 @@
 # Linux Security
 
 ## Intro to Linux Security
-
-- Now that you're going to be putting another computer out there on the Internet, accessible by anyone, we need to discuss security.
 - If a bad guy gets access to your server, they can do anything they want with it. Send spam, launch denial of service attacks, and so much more.
-- we'll discuss a number of security-related topics, including managing users, packages or
-the software installed on the server, various methods of authenticating users, how Linux manages file permissions, and finally, how to configure a firewall.
+- we'll discuss a number of security-related topics
+   - managing users 
+   - packages or the software installed on the server
+   - various methods of authenticating users
+   - how Linux manages file permissions
+   - how to configure a firewall.
 
 ## The Rule of Least Privilege
 - a user or an application only has enough permission to do its job, nothing extra. 
