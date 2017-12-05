@@ -11,7 +11,17 @@ Udacity Full Stack Web Developer Nanodegree Project : Linux Server Configuration
 ## Summary of software installed and configuration changes made
 
 ### Secure your server
+#### update all system packages to most recent versions
+```bash
+sudo apt update && sudo apt upgrade
+```
 
+#### Change the SSH port from 22 to 2200
+
+#### Configure the Uncomplicated Firewall (UFW) to only allow incoming connections for SSH (port 2200), HTTP (port 80), and NTP (port 123).
+
+
+```
 ### Give grader access
 
 ### Prepare to deploy your project
