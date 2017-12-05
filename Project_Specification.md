@@ -27,24 +27,5 @@ Criteria | Meets Specifications
 ---------|----------------------
 Is a README file included in the GitHub repo containing all specified information? | A README file is included in the GitHub repo containing the following information: IP address, URL, summary of software installed, summary of configurations made, and a list of third-party resources used to complete this project.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+## Suggestions to Make Your Project Stand Out!
+* Serve more than one application on your server.
