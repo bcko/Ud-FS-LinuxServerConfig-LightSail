@@ -16,8 +16,14 @@ sudo apt update && sudo apt upgrade
 
 # configure the Lightsail firewall to allow it
 
-# Configure the Uncomplicated Firewall (UFW) to only allow incoming connections for SSH (port 2200), HTTP (port 80), and NTP (port 123).
-# Warning: When changing the SSH port, make sure that the firewall is open for port 2200 first, so that you don't lock yourself out of the server.When you change the SSH port, the Lightsail instance will no longer be accessible through the web app 'Connect using SSH' button. The button assumes the default port is being used. There are instructions on the same page for connecting from your terminal to the instance. Connect using those instructions and then follow the rest of the steps.
+# Configure the Uncomplicated Firewall (UFW) to only allow incoming connections for 
+# SSH (port 2200), HTTP (port 80), and NTP (port 123).
+# Warning: When changing the SSH port, make sure that the firewall is open for port 2200 first, 
+# so that you don't lock yourself out of the server.When you change the SSH port, 
+# the Lightsail instance will no longer be accessible through the web app 'Connect using SSH' button. 
+# The button assumes the default port is being used. 
+# There are instructions on the same page for connecting from your terminal to the instance. 
+# Connect using those instructions and then follow the rest of the steps.
 
 # Create a new user account named grader.
 
@@ -29,7 +35,9 @@ sudo apt update && sudo apt upgrade
 # Configure the local timezone to UTC.
 
 # Install and configure Apache to serve a Python mod_wsgi application
-# If you built your project with Python 3, you will need to install the Python 3 mod_wsgi package on your server: sudo apt-get install libapache2-mod-wsgi-py3.
+
+# If you built your project with Python 3, you will need to install the Python 3 mod_wsgi package on your server: 
+sudo apt-get install libapache2-mod-wsgi-py3.
 
 # Install and configure PostgreSQL:
 
@@ -41,7 +49,8 @@ sudo apt update && sudo apt upgrade
 
 # Clone and setup your Item Catalog project from the Github repository you created earlier in this Nanodegree program.
 
-# Set it up in your server so that it functions correctly when visiting your server’s IP address in a browser. Make sure that your .git directory is not publicly accessible via a browser!
+# Set it up in your server so that it functions correctly when visiting your server’s IP address in a browser. 
+# Make sure that your .git directory is not publicly accessible via a browser!
 ```
 
 
