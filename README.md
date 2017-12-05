@@ -8,7 +8,7 @@ Udacity Full Stack Web Developer Nanodegree Project : Linux Server Configuration
 ## Complete URL to hosted web application
 
 
-## summary of software installed and configuration changes made
+## Summary of software installed and configuration changes made
 ```bash
 # update all system packages to most recent versions
 sudo apt update && sudo apt upgrade
