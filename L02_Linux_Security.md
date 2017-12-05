@@ -30,19 +30,19 @@
 
 ## Package Source Lists
 
-A list of various places we can go to get software. All of your available package sources are listed in this file
-`/etc/apt/sources.list`
-Remember when we were discussing distributions, we said each one approves and releases packages in their own way and that's one of the big ways in which they differ.
-This is the package's list for your current version of Ubuntu.
+- A list of various places we can go to get software.
+- All of your available package sources are listed in this file `/etc/apt/sources.list`
+- Each distribution approves and releases packages in their own way and that's one of the big ways in which they differ.
 
 ## Updating Available Package Lists
 
-One of the most important and simplest ways to ensure your system is secure is to keep your software up to date with new releases. Because Linux systems focus on reliability and they run a variety of complex applications that have numerous dependencies of their own, most Linux distributions do not auto-update the software installed on the system.
-You'll need to do this yourself and test your apps to make sure any recent updates don't break your application.
-The first step to upgrading your installed software is to update your package source list.
-We do this with the command `sudo apt-get update`. The update command will run through all of the repositories we saw within our `etc/apt/sources.list` file, and it will check to see what all software is available and what those version numbers are.
-This command doesn't actually perform any changes to the software on your system.
-It just makes sure your system is aware of the latest information stored within all of these repositories that you're making use of.
+- One of the most important and simplest ways to ensure your system is secure is to keep your software up to date with new releases. 
+- Linux systems focus on reliability and they run a variety of complex applications that have numerous dependencies of their own, most Linux distributions do not auto-update the software installed on the system.
+- You'll need to do this yourself and test your apps to make sure any recent updates don't break your application.
+- The first step to upgrading your installed software is to update your package source list.
+- We do this with the command `sudo apt-get update`. The update command will run through all of the repositories we saw within our `etc/apt/sources.list` file, and it will check to see what all software is available and what those version numbers are.
+- This command doesn't actually perform any changes to the software on your system.
+- It just makes sure your system is aware of the latest information stored within all of these repositories that you're making use of.
 
 ## Upgrading Installed Packages
 
