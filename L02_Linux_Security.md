@@ -30,23 +30,10 @@
 
 ## Package Source Lists
 
-When you need new software, what do you typically do? You might visit an app store like this and download it or
-you could actually walk into a store and buy a physical copy.
-You have a lot of different options. You might even say you have a list of options.
-Now how often have you seen software for Linux sitting up on a store shelf? Not very often, if at all. But we still have a list of various places we can go to get software. 
-
-This is called a package source list.
-Let's take a look. All of your available package sources are listed in this file
+A list of various places we can go to get software. All of your available package sources are listed in this file
 `/etc/apt/sources.list`
 Remember when we were discussing distributions, we said each one approves and releases packages in their own way and that's one of the big ways in which they differ.
 This is the package's list for your current version of Ubuntu.
-As you skim through the file, you'll see some pretty recognizable parts.
-We see a URL here and the word trusty looks familiar.
-That's the code name for the version of Ubuntu we're running.
-We know Ubuntu is also based off of Debian, so that's probably what this deb stands for here.
-This is a list of software repositories that Ubuntu set up for us automatically.
-There are a lot in this list and each of these would be referenced when you try to update or install new software.
-Speaking of which, let's go ahead and make sure that all of our software is up to date.
 
 ## Updating Available Package Lists
 
