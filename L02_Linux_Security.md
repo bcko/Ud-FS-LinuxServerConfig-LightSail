@@ -1,7 +1,8 @@
 # Linux Security
 
 ## Intro to Linux Security
-- If a bad guy gets access to your server, they can do anything they want with it. Send spam, launch denial of service attacks, and so much more.
+- If a bad guy gets access to your server, they can do anything they want with it. 
+   - ex. Send spam, launch denial of service attacks, and so much more.
 - we'll discuss a number of security-related topics
    - managing users 
    - packages or the software installed on the server
