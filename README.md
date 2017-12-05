@@ -9,6 +9,15 @@ Udacity Full Stack Web Developer Nanodegree Project : Linux Server Configuration
 
 
 ## Summary of software installed and configuration changes made
+
+### Secure your server
+
+### Give grader access
+
+### Prepare to deploy your project
+
+### Deploy the Item Catalog project
+
 ```bash
 # update all system packages to most recent versions
 sudo apt update && sudo apt upgrade
