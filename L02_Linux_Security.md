@@ -80,39 +80,11 @@ Package Name
 
 ## Introduction to /etc/passwd
 
-So where is finger retrieving all of this information such as our user name,
-our home directories, the shell?
-Much of this information is found within a file that stores information
-about each user.
-This file is called etc/passwd.
-Let's take a look at that file using the cat command.
-Each line within this file is an entry for a single user, and
-each entry has a number of fields that are separated by colon characters.
-Let's find the entry for our current user, vagrant.
+- finger retrieves all of this information such as our user name, home directories, the shell from `etc/passwd`.
+- Each line within this file is an entry for a single user
+- each entry has a number of fields that are separated by colon characters.
 The line looks like this,
 vagrant: x:1000:1000: :/home/vagrant:/bin/bash.
-These two numbers 1000:1000 might be different on your system, but
-that's okay.
-It's nothing to worry about.
-The first field reads vagrant and that's this users username.
-The second field used to store encrypted passwords.
-Historically storing encrypted passwords in this file wasn't an issue
-as the hardware was too slow to crack a well chosen password.
-These days, almost every distribution will just insert a character that is
-ignored in this field.
-In this case, ubuntu uses an x.
-The third and fourth field store your user ID and group ID.
-We'll discuss these a bit more when we get into talking about file permissions.
-There's a fifth field here that may be hard to see since it doesn't include
-any text.
-It's empty.
-This field is used to store a better description about this user.
-You can see one user does have a better description here.
-Gnat's and then this full description, gnats bug reporting system admin.
-The last two fields are the user's home directory and finally,
-the user's default shell.
-Our home directory is /home/vagrant as we already knew.
-And our default shell is bin/bash.
 
 **/etc/passwd**
 
@@ -130,40 +102,19 @@ Let’s run through what each of those mean:
 1. home directory: Where the user is sent upon login. Generally /home/
 1. command/shell: The absolute path of a command or shell (usually /bin/bash). Does not have to be a shell though!
 
-## Reading /etc/passwd Entries
-
-The following is an entry in the systems /etc/passwd file.
-What is the following user's home directory?
-Enter your answer here.
-
-The users home directory can be found, in the second to the last field.
-In this case, that value is /var/list.
-
 ## User Account Info
 
-Using a combination of the finger application and reading the etc/password
-file, identify the following information for the root user.
-
-User ID and the Group ID are both 0.
-In fact, this is a special rule on Linux systems.
-The root user will always have 0 as its User and Group ID.
-The Home Directory is /root.
-And the default shell is /bin/bash.
+- Using a combination of the finger application and reading the etc/password file, identify the following information for the root user.
+- User ID and the Group ID are both 0.
+- The root user will always have 0 as its User and Group ID.
+- The Home Directory is /root.
+- And the default shell is /bin/bash.
 
 ## Introduction to User Management
 
-If you recall, when we were discussing Sudo, we mentioned that it's
-a common pattern to disable the ability to log in as root, and
-to only log in as a different user that has the ability to use Sudo.
-This is a security measure,
-since every bad guy out there knows every Linux box has a user named root.
-By disabling this account from remote log,
-in we remove a very easy attack vector.
-Now vagrant took care of this for us.
-They created a user name vagrant and
-we just type vagrant ssh from our terminal to automatically connect.
-But not every hosting provider is going to set something like this up for you.
-So let's do this ourselves.
+- it's a common pattern to disable the ability to log in as root and only log in as a different user that has the ability to use Sudo.
+- This is a security measure, since every bad guy out there knows every Linux box has a user named root.
+- By disabling this account from remote log, in we remove a very easy attack vector.
 
 ## Creating a New User
 
