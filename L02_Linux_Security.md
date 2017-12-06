@@ -118,41 +118,24 @@ Let’s run through what each of those mean:
 
 ## Creating a New User
 
-We can create a new user by using the adduser command.
-This is an administrator feature, so we'll have to use sudo as well.
-Let's go ahead and create a new user named student.
-We'll then be asked to enter a password for the student.
-I just used the word student, but as you can see,
-in these password fields, you don't see what you're typing.
-We're then asked the number of additional questions about the user.
-All of these are optional, so you can ignore them.
-But I'm going to go ahead, and
-add a bit more additional information here in the Full Name section.
-And that's all there is to it.
-We can confirm this user was created by using the finger command.
+- We can create a new user by using the adduser command. `sudo adduser`
+- create a new user named student. `sudo adduser student`
+-  We'll then be asked to enter a password for the student.
+- We're then asked the number of additional questions about the user.
+- All of these are optional, so you can ignore them.
+- We can confirm this user was created by using the finger command.
 
 ## Connecting as the New User
 
-Now, that we've created this user.
-Let's go ahead and connect to our server as that user.
-I've opened a new terminal here, and this terminal is on my local machine.
-I have not connected to the server yet.
-I can connect to the server using this command, ssh student@127.0.0.1 -p 2222.
-Let's break this command down a little bit.
-We've been connecting to our server using vagrant SSHwhich
-is just a shortcut for all of this.
-SSH is the application we use to remotely connect to the server.
-And 127.0.0.1 is the IP address we want to connect to.
-This is a standard IP address that always means localhost or
-the same computer I'm currently on.
-The student@ is the user we want to log in as.
-We want to log in as student@ this IP address.
-Finally, the -p 2222 flag tells us to connect using port 2222.
-When Vagrant set up our virtual machine, it automatically set up this port on
-our local machine to forward to the virtual machine.
-After hitting Enter, you may be asked an authenticity verification question.
-Just hit yes, and then you're asked for the user's password.
-Enter that, and you'll be logged in as the student.
+- connect to the server using this command, `ssh student@127.0.0.1 -p 2222`.
+- We've been connecting to our server using vagrant SSH
+- `SSH` is the application we use to remotely connect to the server.
+- `127.0.0.1` is the IP address we want to connect to. 
+- `127.0.0.1` is a standard IP address that always means localhost
+- `student` is the user we want to log in as.
+- `-p 2222` flag tells us to connect using port 2222.
+- After hitting Enter, you may be asked an authenticity verification question.
+- Just hit yes, and then you're asked for the user's password.
 
 ## Introduction to etc sudoers
 
