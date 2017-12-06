@@ -249,34 +249,18 @@ there's a here that says `includedir /etc/sudoers.d`.
 
 ## Forcing Key Based Authentication
 
-The final thing you'll want to do to secure the authentication process
-is to disable the password base logins.
-This will force all of your users to only be able to login using a key pair.
-To do this, you'll have to edit the configuration file for SSHD.
-Which is the service that's running on the server listening for
-all of your SSH connections.
-This configuration file is located at etc/ssh/sshd_config.
-And you can edit it using sudo nano.
-There are a lot of options in here, and you can read through them all to get
-a better understanding of how SSH is configured.
-The comment lines start with the hash symbol here.
-And they're pretty good at explaining what everything does.
-The line we're looking for is right here, PasswordAuthentication yes.
-We just want to change that to no, and then we'll save the file.
-Now, the SSHD service is currently running, and
-it only reads its configuration file when it's initially started up.
-So we need to restart the service so
-it runs with the new configuration option we just made.
-We restart the service by sudo service ssh restart and
-that's all there is to it.
-Now all users will be forced to log in using a key pair.
-SSH will not allow users to log in with a user name and password any longer.
+- The final thing you'll want to do to secure the authentication process is to disable the password base logins.
+- This will force all of your users to only be able to login using a key pair.
+- To do this, you'll have to edit the configuration file for SSHD.
+   - `sudo nano /etc/ssh/sshd_config`
+   - change `PasswordAuthentication yes` to `PasswordAuthentication no`
+- Now, the SSHD service is currently running, and it only reads its configuration file when it's initially started up.
+- So we need to restart the service so it runs with the new configuration option we just made.
+- We restart the service by `sudo service ssh restart`
+- Now all users will be forced to log in using a key pair. SSH will not allow users to log in with a user name and password any longer.
 
 ## Introduction to File Permissions
 
-A bit earlier you changed some permissions on the authorized key file
-and the .ssh directory using a command called chmod.
-But what exactly does that mean?
 Let's dive a bit deeper into how Linux manages file permissions.
 I've listed the contents of the students' home directory.
 And we're going to look at three pieces of information provided here.
@@ -299,8 +283,8 @@ Finally, everyone can read this file, but they cannot write or execute it.
 
 ## Owners and Groups
 
-So how do we identify who the owner in the group are?
-If we look back at our directory listing,
+- how do we identify who the owner in the group are?
+- If we look back at our directory listing,
 we'll see two columns, here in the middle.
 Most of the entries read student student, but
 there's one here that reads root root, and I'll come back to that one.
@@ -345,77 +329,26 @@ But some of them have different group owners.
 
 ## Octal Permissions
 
-So we know permissions are represented as Rs, Ws and Xs, indicating read,
-write and execute.
-But when we changed the permissions of some files earlier we used numbers.
-How did the digits we entered translate to these values?
-We can translate these values as follows.
-Rs are equal to 4.
-W's are equal to two, X's are equal to one and
-if we don't want any permissions, that will be a zero.
-By adding the numbers together,
-we end up with a result identifying the full set of permissions to apply.
-For example, if we wanted to give read and
-execute permissions, we'd have values of four and
-one, which when added together, gives us a final value of five.
-To represent, read, and
-execute permissions, you would use the number five.
-But remember, permissions are done in sets of three to identify what
-permissions are set for the individual user, the group, and everyone.
-Let's analyze our student's .bashrc file once again.
-And convert its current permissions into octal form.
-The current permissions for this file are rw dash, r dash dash, and
-r dash dash, r is a 4 and write is 2.
-So the user value would be 6.
-For group, we just have an r.
-So the value is 4.
-And for everyone we have a value of 4.
-To represent this permission set in octal form, we'd use the value 644.
-
-## Octal File Permissions
-
-Convert these symbol-based file permissions to their octal form.
-Remember, read is four, write is two,
-execute is one, and nothing would be zero.
-
-The first is 644.
-This one is 777.
-The third one is 755.
-Remember, this D does not chance the octal permissions.
-It just represents that this is a directory.
-The final one is 600.
+- r = 4
+- w = 2
+- x = 1
+- no permission = 0
+- By adding the numbers together, we end up with a result identifying the full set of permissions to apply.
 
 ## chgrp and chown
 
-We've already seen how to change file permissions using the chmod command.
-But what if you need to change a files group or owner?
-There are also commands that allow you to do that.
-They are Chown.
-C-H-O-W-N.
-And change group.
-C-H-G-R-P.
-We'll play with this bash history file here located on our home directory.
-Its permissions are set so only the owner can read and write the file.
-This file stores a recent history of every command the user has typed, so
-it's for security reasons only that the user can read and modify the file.
-If you run cat on bash history,
-you'll see that we can currently read this file.
-If we change the file's group to root using this command sudo chgrp root and
-then then name of the file.
-If we try to cat this file again, you'll see that we can still read it.
-The group has no permissions on this file, so there's pretty much no effect.
-Our ability to read this file right now is determined by the owner setting,
-not the group setting.
-But now, if we change the owner to root of the bash history file,
-you'll see that we can no longer read the file.
-Permission is denied, and this is because only the owner can read and
-write the file and that owner's root.
-Our current user student would fall in the everyone category and
-they have no permission at all to read this file.
-Go ahead and change the owner and the group back to student on this file.
-We were just experimenting to show these commands and
-when you might need to use them.
-Now let's move on to the last security topic we'll discuss, firewalls.
+- what if you need to change a files group or owner?
+- `chown` : change owner
+- `chgrp` : change group
+- If we change the file's group to root using this command `sudo chgrp root` and then name of the file.
+- If we try to cat this file again, you'll see that we can still read it.
+- The group has no permissions on this file, so there's pretty much no effect.
+- Our ability to read this file right now is determined by the owner setting, not the group setting.
+- if we change the owner to root of the bash history file, `sudo chown root .bash_history`
+- you'll see that we can no longer read the file.
+- Permission is denied, and this is because only the owner can read and write the file and that owner's root.
+- Our current user student would fall in the everyone category and they have no permission at all to read this file.
+
 
 ### Errata
 
@@ -425,27 +358,14 @@ You can also experiment with `chown` and `chgrp` using another file. To create a
 
 ## Intro to Ports
 
-You now have a server sitting out there on the Internet and this server is doing
-a lot of different things and talking to other devices on the Internet.
-Depending on your application it could be responding to web requests,
-database queries, sending and receiving email, and let's not forget
-handling the SSH sessions we've been using this whole time.
-But how does your server know which application is in charge of handling
-each type of request?
-The answer is ports.
-Each of your applications are configured to respond to requests destined for
-a specific port.
-For example, a web server would by default respond on port 80,
-the default port for HTTP.
-We can control which ports our server is allowed to accept requests for
-using an application called the firewall.
-We'll do that shortly, but for now let's explore some common ports.
+- how does your server know which application is in charge of handling each type of request?
+- Each of your applications are configured to respond to requests destined for a specific port.
+- For example, a web server would by default respond on port 80, the default port for HTTP.
+- We can control which ports our server is allowed to accept requests for using an application called the firewall.
 
 ## Default Ports for Popular Services
 
-Below are a few of the most common services a web server would run.
-Identify the default port for each of these services.
-
+- Below are a few of the most common services a web server would run.
 - HTTP runs on port 80.
 - HTTPS is 443.
 - SSH is 22.
@@ -455,101 +375,49 @@ Identify the default port for each of these services.
 
 ## Intro to Firewalls
 
-Just because our server can listen on every single port, for
-any type of request, that doesn't mean we should.
-The rule of least privilege, which we've discussed throughout this entire lesson,
-tells us we should only listen on the ports required for
-our application to function correctly.
-We can configure which ports we want our server to listen to
-using an application called a firewall.
-Let's imagine this wall is our firewall application.
-And each of these slots is a port.
-We currently have all the slots filled, which means I can't
-pass data from one side, the Internet, to the other, my server.
-You could say I'm denying all incoming requests, but
-if I open one of these boxes, we'll choose port 80 here.
-I can now pass information through.
-The server on the other side can now fully function as a web server
-with the added benefit of completely ignoring these requests
-that we know we're not interested in.
-Let's go back to our terminal and start configuring our server's firewall now.
+- We should only listen on the ports required for our application to function correctly.
+- We can configure which ports we want our server to listen to using an application called a firewall.
 
 ## Intro to UFW
 
-Ubuntu comes with a firewall pre-installed called ufw, but
-it's not currently active.
-You can verify this by typing command, sudo ufw status.
-Status: inactive.
-Let's start adding some rules to our firewall,
-then we'll actually turn it on.
-If we think back to the wall of boxes from our last video,
-we were initially blocking all incoming requests.
-This is a good practice, as it makes it much easier to manage your rules.
-Just block everything coming in, then only allow what you need.
-We'll establish this default, deny incoming, by using this rule.
-We can also establish a default rule for our outgoing connections,
-any request our server is trying to send out to the internet.
-We'll set this rule by using this command, sudo ufw the default rule,
-allow all outgoing.
-Go ahead and check the status of your firewall by typing, sudo ufw status.
-You'll see that it's currently still inactive, which is a good thing.
-We're just configuring our firewall now.
-We actually have to turn it on ourselves once we have everything how we want.
-If we were to turn the firewall on now,
-we'd we blocking all incoming connections including SSH, which means
-our server would be dead in the water and completely inaccessible to us.
-It's now time for us to start configuring the firewall to support
-the various ports and the applications we know we'll need.
+- Ubuntu comes with a firewall pre-installed called ufw, but it's not currently active.
+- You can verify this by typing command, `sudo ufw status`. Status: inactive.
+- start adding some rules to our firewall, then we'll actually turn it on.
+- we initially block all incoming requests. `sudo ufw default deny incoming`
+   - This is a good practice, as it makes it much easier to manage your rules.
+   - Just block everything coming in, then only allow what you need.
+- We can also establish a default rule for our outgoing connections, any request our server is trying to send out to the internet.
+   - `sudo ufw default allow outgoing`
+- check the status of your firewall by typing, `sudo ufw status`.
+   - You'll see that it's currently still inactive, which is a good thing. We're just configuring our firewall now.
+- We actually have to turn it on ourselves once we have everything how we want.
+- If we were to turn the firewall on now, we'd we blocking all incoming connections including SSH, which means our server would be dead in the water and completely inaccessible to us.
+
 
 ## Configuring Ports in UFW
 
-Let's start allowing the ports we know we'll need for
-the applications our server will be supporting.
-First and foremost we know we'll need to support SSH so
-we can continue administering this server.
-Normally you would do this by typing sudo ufw allow ssh and
-you can go ahead and do that now.
-But remember, we're using a Vagrant virtual machine and
-Vagrant set up our SSH on Port 2222.
-So we'll need to allow all TCP connections through Port 2222 for
-SSH to actually work in our scenario here.
-For now, the only other application we plan to support is a basic HTTP server,
-so we can allow this by using sudo ufw allow www.
-And with that, we can now enable our firewall with sudo ufw enable.
-This step here can be a little hair raising,
-because our SSH connection is reliant upon these rules being correct.
+- Let's start allowing the ports we know we'll need for the applications our server will be supporting.
+- we'll need to support SSH so we can continue administering this server.
+- Normally you would do this by typing sudo ufw allow ssh and you can go ahead and do that now.
+- we're using a Vagrant virtual machine and
+   - Vagrant set up our SSH on Port 2222.
+   - So we'll need to allow all TCP connections through Port 2222 for SSH to actually work in our scenario here.
+- For now, the only other application we plan to support is a basic HTTP server, 
+   - so we can allow this by using `sudo ufw allow www`.
+- we can now enable our firewall with `sudo ufw enable`.
+- This step here can be a little hair raising, because our SSH connection is reliant upon these rules being correct.
 If all of a sudden you lose your SSH connection to your server,
 it's a pretty clear indicator that you messed up some of your rules.
 Some cloud providers do offer a way to regain access to your system
 through an external control panel.
 But many others, you're just out of luck at this point.
-For this reason, I recommend configuring your firewall
-pretty early in the server setup process.
-Finally, we can confirm all of our rules are set up as we indicated
-by using the sudo ufw status command.
-We'll see all of our rules here and that our firewall is currently active.
+- I recommend configuring your firewall pretty early in the server setup process.
+- Finally, we can confirm all of our rules are set up as we indicated by using the `sudo ufw status` command.
 
 ## Conclusion
 
-Congratulations.
-You now have a server updated and
-configured, sitting out there on the wild west that is the internet.
-Best of all, you can rest easy at night knowing your server is safe and secure.
-Where you do go from here?
-It depends on your needs.
-There are a lot of different types of servers, email servers,
-chat servers, web application servers.
-Generally, the only big differences between each of these
-is the software they have installed and the ports that they have open.
-I've placed a few server set-up walk throughs in the instructor notes below,
-that should get you started.
-I'd encourage you to start by setting up a web application server,
-installing Apache in a database server like PostgreSQL.
-Good luck, have fun, and remember, experiment.
-This is your own little piece of the Internet.
-
-Here are a few tutorials that will walk you through how to configure your server in a variety of use cases:
-
+- There are a lot of different types of servers, email servers, chat servers, web application servers.
+- Here are a few tutorials that will walk you through how to configure your server in a variety of use cases:
 - ["LAMP" Stack (Linux, Apache, MySQL, PHP)](https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-on-ubuntu-14-04)
 - ["LEMP" Stack (Linux, nginx, MySQL, PHP)](https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-on-ubuntu-14-04)
 - [PEPS Mail and File Storage](https://www.digitalocean.com/community/tutorials/how-to-run-your-own-mail-server-and-file-storage-with-peps-on-ubuntu-14-04)
