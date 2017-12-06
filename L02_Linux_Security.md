@@ -138,22 +138,12 @@ Let’s run through what each of those mean:
 - Just hit yes, and then you're asked for the user's password.
 
 ## Introduction to etc sudoers
-
-Now that we're logged into our server as the student user, let's try and
-run a sudo command.
-We'll try and run sudo cat /etc/passwd.
-We're asked for a [sudo] password for the student which is just the standard
-password we set for the user when we initially made the user.
-We now get this warning.
-The student is not in the sudoers file.
-This incident will be reported.
-Our students does not have permission to use the sudo command.
-So, let's fix that.
-I switch back to my other terminal where I'm logged in as vagrant.
-This is a user we know can run sudo commands.
-They can perform administrative tasks.
-Now, the list of users that are allowed to do this
-is within the etc/sudoers file.
+- `sudo cat /etc/passwd`.
+- We're asked for a [sudo] password for the student which is just the standard password we set for the user when we initially made the user.
+- We now get this warning. > The student is not in the sudoers file. This incident will be reported.
+ Our students does not have permission to use the sudo command.
+- switch back to a user we know can run sudo commands.
+- the list of users that are allowed to do this is within the etc/sudoers file.
 Let's read that file using sudo cat /etc/sudoers.
 Here we can see that the root user is listed
 along with a few groups using % and then the name of the group.
