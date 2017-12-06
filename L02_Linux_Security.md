@@ -220,16 +220,10 @@ there's a here that says `includedir /etc/sudoers.d`.
 
 ## Supported Key Types
 
-The ssh-keygen application can generate key pairs of various types.
-The key you just generated was an RSA key,
-which is the default type if you don't specifically define a different type.
-Read through the ssh-keygen man page and
-determine what other key types are supported by the SSH version 2 protocol.
-
-The SSH version two protocol supports the DSA, ECDSA,
-ED25519, and RSA key types.
-MD5 and SHA256 are hashing algorithms that are not suitable for
-public key encryption.
+- The ssh-keygen application can generate key pairs of various types.
+- The key you just generated was an RSA key, which is the default type if you don't specifically define a different type.
+- The SSH version two protocol supports the DSA, ECDSA, ED25519, and RSA key types.
+- MD5 and SHA256 are hashing algorithms that are not suitable for public key encryption.
 
 ## Installing a Public Key
 
