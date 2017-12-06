@@ -62,33 +62,21 @@
 
 ## Discovering Packages
 
-Fortunately, each distribution tends to publish an easy to browse version of their repositories.
-For Ubuntu, you can search for packages at packages.ubuntu.com.
+- Fortunately, each distribution tends to publish an easy to browse version of their repositories.
+- For Ubuntu, you can search for packages at packages.ubuntu.com.
 
 ## Using Package Search
-
-Let's get a bit more practice searching for
-packages using Ubuntu's package website.
-Use the site to search for the package names for Apache HTTP Server,
-PostgreSQL, and Memcache on Ubuntu Trusty.
-Enter your answers in these boxes.
-You don't need to include the full app to get command, just the package name.
-
-The correct answers are apache2, postgresql, and memcached.
+Package Name
+- Apache HTTP Server : apache2
+- PostgreSQL : postgresql
+- Memchache : memcached
 
 ## Using Finger
 
-Now that we've installed Finger, let's use it.
-This application will look up various pieces of information about a user, and
-display it in an easy to read format.
-If I type Finger, the command will output information about
-all of the users currently logged into the system.
-You can see the vagrant user here, that's us, and
-the last time we logged in.
-You can also pass a username to the Finger application
-to see additional information about a specific user.
-Type finger vagrant, and you'll see some additional information
-including our home directory and what shell we're using.
+- Finger will look up various pieces of information about a user, and display it in an easy to read format.
+- Finger command will output information about all of the users currently logged into the system.
+- You can also pass a username to the Finger application to see additional information about a specific user.
+- Type finger vagrant, and you'll see some additional information including our home directory and what shell we're using.
 
 ## Introduction to /etc/passwd
 
