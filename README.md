@@ -1,6 +1,10 @@
 # Ud-FSND-LinuxServerConfiguration
 Udacity Full Stack Web Developer Nanodegree Project : Linux Server Configuration
 
+## [Project Description](Project_Description.md)
+
+## [Project Specification](Project_Specification.md)
+
 ## IP address and SSH port
 * Public IP : 18.217.154.79
 * SSH port : 2200
