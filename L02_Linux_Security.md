@@ -227,38 +227,25 @@ there's a here that says `includedir /etc/sudoers.d`.
 
 ## Installing a Public Key
 
-Now that we've generated our key pair locally, we still need to place
-the public key on our remote server, so SSH can use it to log in.
-There are multiple ways to do this and there are even some applications
-that will do most of the work for you, but we're going to do it the manual way.
-First we want to make sure we're logged into our server as the student.
-I'll first create a directory called .ssh using the mkdir command
-within my home directory.
-This is a special directory where all of your key related files must be stored.
-I'll then create a new file within this directory called authorized keys.
-This is another special file that will store all of the public keys
-that this account is allowed to use for
-authentication, with one key per line in that file.
-Now, back on my local machine I've read out the contents of linuxcourse.pub,
-and I just want to copy that.
-Then, back on my server as the student user,
-I went to edit this authorized key file.
-And in here I'll just paste in that content and save it.
-The final thing we need to do is set up some specific file permissions
-on the authorized key file and the SSH directory.
-This is a security measure that SSH enforces to ensure
-other users cannot gain access to your account.
-We'll discuss file permissions in a lot more detail shortly.
-For now we'll set the permissions using the following commands.
-We'll run chmod 700 on our SSH directory, and
-chmod 644 on the authorized keys file.
-Finally we're all done and we can now log in as the student user, but
-instead of using user name and password.
-This I flag and the definition here of what key pair we want to use
-will allow me to login using that key pair.
-If you set a passphrase for your key pair, you'll be asked to enter that.
-But, once you're done, you'll see you've logged into the server and
-you did not have to enter your remote password for this user.
+- we've generated our key pair locally, we still need to place the public key on our remote server, so SSH can use it to log in.
+- There are multiple ways to do this and there are even some applications that will do most of the work for you, but we're going to do it the manual way.
+- First we want to make sure we're logged into our server as the student.
+- `mkdir .ssh` command within my home directory.
+- This is a special directory where all of your key related files must be stored.
+- create a new file within this directory called authorized keys. `touch .ssh/authorized_keys`
+- This is another special file that will store all of the public keys that this account is allowed to use for authentication, with one key per line in that file.
+- Back on my local machine I've read out the contents of `linuxcourse.pub`, copy that.
+- Then, back on my server as the student user,
+- edit this authorized key file. `nano .ssh/authorized_keys` just paste in that content and save it.
+- The final thing we need to do is set up some specific file permissions on the authorized key file and the SSH directory.
+- This is a security measure that SSH enforces to ensure other users cannot gain access to your account.
+- run `chmod 700 .ssh` on our SSH directory,
+- run `chmod 644 .ssh/authorized_keys` on the authorized keys file.
+- Finally we're all done and we can now log in as the student user
+   - `ssh student@127.0.0.1 -p 2222 -i ~/.ssh/linuxCourse`
+   - -i flag and the definition here of what key pair we want to use will allow me to login using that key pair.
+   - If you set a passphrase for your key pair, you'll be asked to enter that.
+- once you're done, you'll see you've logged into the server and you did not have to enter your remote password for this user.
 
 ## Forcing Key Based Authentication
 
