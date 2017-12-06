@@ -140,84 +140,48 @@ Let’s run through what each of those mean:
 ## Introduction to etc sudoers
 - `sudo cat /etc/passwd`.
 - We're asked for a [sudo] password for the student which is just the standard password we set for the user when we initially made the user.
-- We now get this warning. > The student is not in the sudoers file. This incident will be reported.
- Our students does not have permission to use the sudo command.
+- We now get this warning. "The student is not in the sudoers file. This incident will be reported".
+- Our students does not have permission to use the sudo command.
 - switch back to a user we know can run sudo commands.
 - the list of users that are allowed to do this is within the etc/sudoers file.
-Let's read that file using sudo cat /etc/sudoers.
-Here we can see that the root user is listed
-along with a few groups using % and then the name of the group.
-On some systems you would just add the student user just like this,
-using a special program called visudo, that's allowed to edit this file.
-But on Ubuntu, it handles it a bit differently.
-If you look at the very bottom of this file,
-there's a here that says includedir /etc/sudoers.d.
-This command tells the system to also look through any files in etc/sudoers.d
-and include those as if they were written directly within this file.
-This is a common pattern since distribution updates could
-overwrite this file.
-And if that were to happen, you would lose all of the users you added.
-By keeping your customizations in this other directory,
-the system eliminates that risk.
-Let's see what files are currently included in that directory
-by running sudo ls etc/sudoers.d.
-We see a file here called vagrant and
-that makes sense since we're actually using sudo here.
-Even though vagrant wasn't within our etc/sudoers file itself, this file is
-being included by this directory, giving this user the permissions it needs.
+- Let's read that file using `sudo cat /etc/sudoers`.
+   - Here we can see that the root user is listed along with a few groups using % and then the name of the group.
+- On some systems you would just add the student user just like this, using a special program called `visudo`, that's allowed to edit this file.
+- on Ubuntu, it handles it a bit differently.
+- If you look at the very bottom of this file,
+there's a here that says `includedir /etc/sudoers.d`.
+- This command tells the system to also look through any files in etc/sudoers.d and include those as if they were written directly within this file.
+- This is a common pattern since distribution updates could overwrite this file.
+   - And if that were to happen, you would lose all of the users you added.
+   - By keeping your customizations in this other directory, the system eliminates that risk.
+   - Let's see what files are currently included in that directory by running sudo ls etc/sudoers.d.
 
 ## Giving Sudo Access
 
-Let's go ahead and give our student user access to sudo themselves.
-I'll first copy the vagrant file and name it student.
-I'll then need to make a small edit to this file and
-I'll just use nano to do that.
-This second line here is actually what's doing all of the work.
-The file name doesn't mean anything,
-so we'll change the word vagrant here to student.
-There are a few more options here.
-And if you'd like to understand them all,
-I've placed a link in the instructor notes for more information.
-For now, we just want student users pseudo access to function exactly as
-the vagrant users currently does.
-After saving that file, I've switched back to my terminal where I'm logged in
-as the student and we'll try to run this sudo command again.
-And there we go, we see the results.
-Our student user now has access to use sudo.
+- give our student user access to sudo themselves.
+- I'll first copy the vagrant file and name it student.
+   - `sudo cp /etc/sudoers.d/vagrant /etc/sudoers.d/student`   
+- I'll then need to make a small edit to this file and
+   - `sudo nano /etc/sudoers.d/student`
+   - The file name doesn't mean anything,
+   - change the word vagrant here to student.
+-.Our student user now has access to use sudo.
 
 ## Resetting Passwords
 
-We've just provided super user access to the user student, but
-if you remember, that user has an extremely simple password.
-The user themselves could reset their password using the passwd command, but
-you can't rely on that user to do so all the time.
-As a super user, you can foresee users password to expire.
-Use the man page and read through the documentation for the passwd command.
-Enter the command that you would use to force
-the student user's password to expire.
-
-You would use the command, sudo passwd -e student,
-to force the student user to reset their password the next time they login.
-Student is the user and this -e sets that password to expire.
+- The user themselves could reset their password using the passwd command, but you can't rely on that user to do so all the time.
+- As a super user, you can foresee users password to expire.
+- Enter the command that you would use to force the student user's password to expire.
+   - `sudo passwd -e student`
+   - it force the student user to reset their password the next time they login.
+   - Student is the user and this -e sets that password to expire.
 
 ## Another Authentication Method
 
-You just added a powerful user to your server that authenticates using a user
-name and password.
-Hopefully, you chose a strong password since attackers will soon start running
-bots against your server attempting to guess any valid usernames and passwords.
-This is going to cause all sorts of issues for your server.
-Your logs are going to be filled with invalid login attempts, and
-if one of these hackers manages to gain access,
-well that's about the worst thing we could possibly imagine.
-There's another way to perform user authentication that's much more secure.
-It doesn't rely on passwords, which we're pretty horrible at making secure,
-since we have to make them simple enough to memorize.
-Instead, this form of authentication, called key based authentication,
-relies on physical files located on the server and
-your personal machine, the one you're logging in from.
-Before we get into key based authentication,
-let's demonstrate how public key encryption generally works.
+- Hopefully, you chose a strong password since attackers will soon start running bots against your server attempting to guess any valid usernames and passwords.
+- There's another way to perform user authentication that's much more secure.
+- It doesn't rely on passwords, which we're pretty horrible at making secure, since we have to make them simple enough to memorize.
+- key based authentication, relies on physical files located on the server and your personal machine, the one you're logging in from.
 
 ## Public Key Encryption
 
