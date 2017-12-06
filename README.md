@@ -16,16 +16,16 @@ Udacity Full Stack Web Developer Nanodegree Project : Linux Server Configuration
 
 ### Secure server
 #### Update all currently installed packages
+- One of the most important and simplest ways to ensure your system is secure is to keep your software up to date with new releases
+- when setting up a new machine, you can be pretty safe in just accepting that the system is always making the best decisions for you
 ```bash
 sudo apt update     # update available package lists
 sudo apt upgrade    # upgrade installed packages
 sudo apt autoremove # automatically remove packages that are no longer required
 ```
 
-
-
+#### Change the SSH port from 22 to 2200.
 ```bash
-# Change the SSH port from 22 to 2200
 sudo nano /etc/ssh/sshd_config  # change port to 2200
 
 sudo service ssh restart
