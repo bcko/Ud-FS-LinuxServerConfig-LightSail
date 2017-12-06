@@ -185,54 +185,38 @@ there's a here that says `includedir /etc/sudoers.d`.
 
 ## Public Key Encryption
 
-Let's imagine I wanted to send a message to Cameron without anyone else being to
-see that message.
-If I were to just place this note on Cameron's desk, anyone could come by and
-read it.
-I could find a box with a lock and lock the message away but
-then I have to somehow get this key to Cameron.
-That's not going to work because anyone will be able to come by and
-grab the key.
-But what if Cameron already had a box set up on his desk,
-with his own lock, and the key to unlock that box is always in Cameron's pocket?
-He never shares that key with anyone.
-I can then come by his desk, place my message in the box, and lock it.
-And no one else can ever see that message.
-In this example, the box is called the public key.
-The box can be left out in the open, shared around without any consequence.
-The key in Cameron's pocket is called a private key.
-Cameron never lets anybody else borrow that key or see it.
-This combination of public and
-private keys allows me to securely communicate with Cameron.
-This same cryptography trick can be used to authenticate a client with a server.
-The server will send a random message to the client.
-The client will encrypt that message with their private key, and
-then send that encrypted message back to the server.
-The server will decrypt this message with their public key and
-if that value equals the same value they sent, then everything checks out and
-the client has authenticated.
+- Let's imagine I wanted to send a message to Cameron without anyone else being to see that message.
+- If I were to just place this note on Cameron's desk, anyone could come by and read it.
+- I could find a box with a lock and lock the message away but then I have to somehow get this key to Cameron.
+- That's not going to work because anyone will be able to come by and grab the key.
+- But what if Cameron already had a box set up on his desk, with his own lock, and the key to unlock that box is always in Cameron's pocket?
+- He never shares that key with anyone.
+- I can then come by his desk, place my message in the box, and lock it. And no one else can ever see that message.
+- In this example, the box is called the public key. The box can be left out in the open, shared around without any consequence.
+- The key in Cameron's pocket is called a private key. Cameron never lets anybody else borrow that key or see it.
+- This combination of public and private keys allows me to securely communicate with Cameron.
+- This same cryptography trick can be used to authenticate a client with a server.
+- The server will send a random message to the client. 
+- The client will encrypt that message with their private key, and then send that encrypted message back to the server.
+- The server will decrypt this message with their public key
+- if that value equals the same value they sent
+- everything checks out and the client has authenticated.
 
 ## Generating Key Pairs
 
-We'll generate our key pair on our local machine, not on our server.
-Remember, you never, ever want to share your private key with anyone else.
-It should remain firmly in your possession at all times.
-For this reason, you always generate key pairs locally.
-If you were to generate the key pair on the server,
-you cannot claim that the private key has always been private.
-We'll generate our key pair using an application called ssh-keygen.
-You will first be asked to give a file name for the key pair.
-I've given this one the name users/udacity/.ssh/linuxcourse.
-This directory here is the default directory that key pairs should exist
-in, so I advise you to keep that the same.
-But you can name it what you'd like.
-We'll then add a pass phrase to our key pair,
-just in case someone does happen to get these files.
-This pass phrase will prevent them from actually using them.
-Once done, you'll see that ssh-keygen has generated two files,
-linuxCourse and linuxCourse.pub.
-This file, linuxCourse.pub,
-is what we'll place on our server to enable key based authentication.
+- We'll generate our key pair on our local machine, not on our server.
+   - Remember, you never, ever want to share your private key with anyone else.
+   - It should remain firmly in your possession at all times.
+   - For this reason, you always generate key pairs locally.
+- If you were to generate the key pair on the server, you cannot claim that the private key has always been private.
+- We'll generate our key pair using an application called `ssh-keygen`.
+   - You will first be asked to give a file name for the key pair.
+   - I've given this one the name `Users/Udacity/.ssh/linuxCourse`.
+   - This directory here is the default directory that key pairs should exist
+- We'll then add a pass phrase to our key pair, just in case someone does happen to get these files.
+- This passphrase will prevent them from actually using them.
+- you'll see that ssh-keygen has generated two files, `linuxCourse` and `linuxCourse.pub`.
+- `linuxCourse.pub` is what we'll place on our server to enable key based authentication.
 
 ## Supported Key Types
 
