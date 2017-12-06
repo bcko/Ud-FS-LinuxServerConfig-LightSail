@@ -14,12 +14,17 @@ Udacity Full Stack Web Developer Nanodegree Project : Linux Server Configuration
 
 ## Summary of software installed and configuration changes made
 
-### Secure your server
+### Secure server
+#### Update all currently installed packages
 ```bash
-# update all system packages to most recent versions
-sudo apt update
-sudo apt upgrade
+sudo apt update     # update available package lists
+sudo apt upgrade    # upgrade installed packages
+sudo apt autoremove # automatically remove packages that are no longer required
+```
 
+
+
+```bash
 # Change the SSH port from 22 to 2200
 sudo nano /etc/ssh/sshd_config  # change port to 2200
 
