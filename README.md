@@ -22,34 +22,20 @@ sudo apt update     # update available package lists
 sudo apt upgrade    # upgrade installed packages
 sudo apt autoremove # automatically remove packages that are no longer required
 ```
+### Create a New User `grader` and give `grader` sudo
+
+```bash
+sudo adduser grader # create a new user named grader
+# grader password is 'udacity'
+# use the usermod command to add the user to the sudo group
+# https://www.digitalocean.com/community/tutorials/how-to-create-a-sudo-user-on-ubuntu-quickstart
+sudo usermod -aG sudo grader
+```
 
 ### Change the SSH port from 22 to 2200.
 ```bash
 sudo nano /etc/ssh/sshd_config  # change port 22 to 2200
 sudo service ssh restart        # restart ssh service
-```
-
-### Configure the Uncomplicated Firewall (UFW) to only allow incoming connections for SSH (port 2200), HTTP (port 80), and NTP (port 123).
-- Warning: When changing the SSH port, make sure that the firewall is open for port 2200 first, so that you don't lock yourself out of the server.
-- When you change the SSH port, the Lightsail instance will no longer be accessible through the web app 'Connect using SSH' button. The button assumes the default port is being used. 
-```bash
-sudo ufw status                 # check ufw status 
-sudo ufw default deny incoming  # initially block all incoming requests
-sudo ufw default allow outgoing # default rule for outgoing connections
-sudo ufw allow 2200/tcp         # allow SSH on port 2200
-sudo ufw allow www              # allow HTTP on port 80
-sudo ufw allow ntp              # allow NTP on port 123
-sudo ufw enable                 # enable firewall
-sudo ufw status                 # check ufw status
-```
-
-### Create a New User `grader` and give `grader` sudo
-
-```bash
-sudo adduser grader # create a new user named grader
-# use the usermod command to add the user to the sudo group
-# https://www.digitalocean.com/community/tutorials/how-to-create-a-sudo-user-on-ubuntu-quickstart
-sudo usermod -aG sudo grader
 ```
 
 ### Create an SSH key pair for grader using the ssh-keygen tool
@@ -69,12 +55,29 @@ sudo chmod 644 /home/grader/.ssh/authorized_keys
 ```
 
 ```bash
-ssh grader@18.216.240.252 -p 22 -i grader
+ssh grader@18.216.240.252 -p 2200 -i grader
+```
+
+### Configure the Uncomplicated Firewall (UFW) to only allow incoming connections for SSH (port 2200), HTTP (port 80), and NTP (port 123).
+- Warning: When changing the SSH port, make sure that the firewall is open for port 2200 first, so that you don't lock yourself out of the server.
+- When you change the SSH port, the Lightsail instance will no longer be accessible through the web app 'Connect using SSH' button. The button assumes the default port is being used. 
+```bash
+sudo ufw status                 # check ufw status 
+sudo ufw default deny incoming  # initially block all incoming requests
+sudo ufw default allow outgoing # default rule for outgoing connections
+sudo ufw allow 2200/tcp         # allow SSH on port 2200
+sudo ufw allow www              # allow HTTP on port 80
+sudo ufw allow ntp              # allow NTP on port 123
+sudo ufw enable                 # enable firewall
+sudo ufw status                 # check ufw status
 ```
 
 ### Disable root
-
-
+```bash
+sudo nano /etc/ssh/sshd_config  # open sshd_config
+# change PermitRootLogin to no
+sudo service ssh restart        # restart ssh service
+```
 ### Configure the local timezone to UTC.
 ```bash
 # https://www.digitalocean.com/community/tutorials/how-to-set-up-time-synchronization-on-ubuntu-16-04
