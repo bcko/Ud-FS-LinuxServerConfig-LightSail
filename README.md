@@ -14,8 +14,7 @@ Udacity Full Stack Web Developer Nanodegree Project : Linux Server Configuration
 
 ## Summary of software installed and configuration changes made
 
-### Secure server
-#### Update all currently installed packages
+### Update all currently installed packages
 - One of the most important and simplest ways to ensure your system is secure is to keep your software up to date with new releases
 - when setting up a new machine, you can be pretty safe in just accepting that the system is always making the best decisions for you
 ```bash
@@ -24,19 +23,39 @@ sudo apt upgrade    # upgrade installed packages
 sudo apt autoremove # automatically remove packages that are no longer required
 ```
 
-#### Change the SSH port from 22 to 2200.
+### Change the SSH port from 22 to 2200.
 ```bash
-sudo nano /etc/ssh/sshd_config  # change port to 2200
-
-sudo service ssh restart
-
-
+sudo nano /etc/ssh/sshd_config  # change port 22 to 2200
+sudo service ssh restart        # restart ssh service
 ```
 
+### Configure the Uncomplicated Firewall (UFW) to only allow incoming connections for SSH (port 2200), HTTP (port 80), and NTP (port 123).
 
-#### Configure the Uncomplicated Firewall (UFW) to only allow incoming connections for SSH (port 2200), HTTP (port 80), and NTP (port 123).
+```bash
+sudo ufw status                 # check ufw status 
+sudo ufw default deny incoming  # initially block all incoming requests
+sudo ufw default allow outgoing # default rule for outgoing connections
+sudo ufw allow 2200/tcp         # allow SSH on port 2200
+sudo ufw allow www              # allow HTTP on port 80
+sudo ufw allow ntp              # allow NTP on port 123
+sudo ufw enable                 # enable firewall
+sudo ufw status                 # check ufw status
+```
 
-### Give grader access
+### Create a New User `grader` and give `grader` access
+
+```bash
+sudo adduser grader # create a new user named grader
+mkdir .ssh
+
+# use the usermod command to add the user to the sudo group
+# https://www.digitalocean.com/community/tutorials/how-to-create-a-sudo-user-on-ubuntu-quickstart
+usermod -aG sudo grader
+```
+
+```bash
+
+```
 
 ### Prepare to deploy your project
 
@@ -95,4 +114,7 @@ sudo apt install git
 
 
 ## List of any third-party resources you made use of to complete this project
-https://bash.cyberciti.biz/guide/Shell_Comments
+- [Shell Commands](https://bash.cyberciti.biz/guide/Shell_Comments)
+- [Getting Started with Amazon Lightsail](https://lightsail.aws.amazon.com/ls/docs/getting-started/article/getting-started-with-amazon-lightsail)
+- [Set up SSH for your Linux/Unix-based Lightsail instances](https://lightsail.aws.amazon.com/ls/docs/how-to/article/lightsail-how-to-set-up-ssh)
+- [How To Create a Sudo User on Ubuntu](https://www.digitalocean.com/community/tutorials/how-to-create-a-sudo-user-on-ubuntu-quickstart)
