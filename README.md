@@ -30,7 +30,9 @@ sudo service ssh restart        # restart ssh service
 ```
 
 ### Configure the Uncomplicated Firewall (UFW) to only allow incoming connections for SSH (port 2200), HTTP (port 80), and NTP (port 123).
-
+- Warning: When changing the SSH port, make sure that the firewall is open for port 2200 first, 
+- so that you don't lock yourself out of the server.
+- When you change the SSH port, the Lightsail instance will no longer be accessible through the web app 'Connect using SSH' button. The button assumes the default port is being used. 
 ```bash
 sudo ufw status                 # check ufw status 
 sudo ufw default deny incoming  # initially block all incoming requests
@@ -53,6 +55,7 @@ mkdir .ssh
 usermod -aG sudo grader
 ```
 
+### Create an SSH key pair for grader using the ssh-keygen tool
 ```bash
 
 ```
@@ -62,11 +65,7 @@ usermod -aG sudo grader
 ### Deploy the Item Catalog project
 
 ```bash
-# update all system packages to most recent versions
-sudo apt update && sudo apt upgrade
 
-# Change the SSH port from 22 to 2200
-sudo nano /etc/ssh/sshd_config
 
 # configure the Lightsail firewall to allow it
 
