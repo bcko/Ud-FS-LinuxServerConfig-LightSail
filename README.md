@@ -54,18 +54,25 @@ sudo usermod -aG sudo grader
 
 ### Create an SSH key pair for grader using the ssh-keygen tool
 ```bash
-sudo mkdir /home/grader/.ssh
-sudo chown grader:grader /home/grader/.ssh # changing ownership of .ssh to grader
-sudo chmod 700 /home/grader/.ssh # change folder permission
-
+# local machine
+ssh-keygen 
+# Enter file in which to save the key (/home/bcko/.ssh/id_rsa): grader
+# empty passphrase
 ```
 
 ```bash
-# local machine
-ssh-keygen
-
+sudo mkdir /home/grader/.ssh
+sudo chown grader:grader /home/grader/.ssh # changing ownership of .ssh to grader
+sudo chmod 700 /home/grader/.ssh           # change folder permission
+sudo cp /home/ubuntu/.ssh/authorized_keys /home/grader/.ssh/
+sudo chmod 644 /home/grader/.ssh/authorized_keys
 ```
-### Diable root
+
+```bash
+ssh grader@18.216.240.252 -p 22 -i grader
+```
+
+### Disable root
 
 
 ### Configure the local timezone to UTC.
