@@ -6,7 +6,7 @@ Udacity Full Stack Web Developer Nanodegree Project : Linux Server Configuration
 ## [Project Specification](Project_Specification.md)
 
 ## IP address and SSH port
-* Public IP : 18.217.
+* Public IP : 18.216.240.252
 * SSH port : 2200
 
 ## Complete URL to hosted web application
