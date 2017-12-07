@@ -106,10 +106,9 @@ sudo -u postgres createuser -P catalog
 sudo apt install git # Install git
 
 sudo mkdir /var/www/catalog # create catalog folder
-sudo chown -R grader:grader catalog # change owner of the catalog folder to grader
+sudo chown -R grader:grader catalog
 cd /var/www/catalog
-
-git clone https://github.com/bcko/Ud-FSND-ItemCatalogApp-PythonFlask.git
+sudo git clone https://github.com/bcko/Ud-FSND-ItemCatalogApp-PythonFlask.git
 
 ```
 ### Install Flask and dependencies
