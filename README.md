@@ -93,7 +93,7 @@ sudo apt install libapache2-mod-wsgi-py3  # install python3 mod_wsgi
 
 ### Install and configure PostgreSQL
 ```bash
-sudo apt install postgresql postgresql-contrib # install postgreSQL
+sudo apt install postgresql # install postgreSQL
 
 # Create a new database user named catalog that has limited permissions to your catalog application database.
 sudo -u postgres createuser -P catalog
