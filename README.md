@@ -114,9 +114,6 @@ sudo git clone https://github.com/bcko/Ud-FSND-ItemCatalogApp-PythonFlask.git
 ### Install Flask and dependencies
 ```bash
 sudo apt install python3-pip
-sudo pip install virtualenv
-sudo virtualenv venv
-source venv/bin/activate
 sudo pip3 install Flask
 sudo pip3 install oauth2client
 sudo pip3 install httplib2
