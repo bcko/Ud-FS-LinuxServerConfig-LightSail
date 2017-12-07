@@ -53,12 +53,21 @@ sudo usermod -aG sudo grader
 ```
 
 ### Create an SSH key pair for grader using the ssh-keygen tool
+```bash
+sudo mkdir /home/grader/.ssh
+sudo chown grader:grader /home/grader/.ssh # changing ownership of .ssh to grader
+sudo chmod 700 /home/grader/.ssh # change folder permission
+
+```
 
 ```bash
 # local machine
 ssh-keygen
 
 ```
+### Diable root
+
+
 ### Configure the local timezone to UTC.
 ```bash
 # https://www.digitalocean.com/community/tutorials/how-to-set-up-time-synchronization-on-ubuntu-16-04
