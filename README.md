@@ -49,7 +49,7 @@ sudo ufw status                 # check ufw status
 sudo adduser grader # create a new user named grader
 # use the usermod command to add the user to the sudo group
 # https://www.digitalocean.com/community/tutorials/how-to-create-a-sudo-user-on-ubuntu-quickstart
-usermod -aG sudo grader
+sudo usermod -aG sudo grader
 ```
 
 ### Create an SSH key pair for grader using the ssh-keygen tool
