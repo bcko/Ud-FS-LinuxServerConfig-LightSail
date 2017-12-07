@@ -90,6 +90,7 @@ sudo timedatectl set-timezone UTC
 sudo apt install apache2                  # install apache
 sudo apt install libapache2-mod-wsgi-py3  # install python3 mod_wsgi
 ```
+
 ### configure Apache to handle requests using the WSGI module
 ```bash
 cd /etc/apache2/sites-enabled
@@ -139,3 +140,4 @@ sudo pip3 install sqlalchemy
 - [Getting Started with Amazon Lightsail](https://lightsail.aws.amazon.com/ls/docs/getting-started/article/getting-started-with-amazon-lightsail)
 - [Set up SSH for your Linux/Unix-based Lightsail instances](https://lightsail.aws.amazon.com/ls/docs/how-to/article/lightsail-how-to-set-up-ssh)
 - [How To Create a Sudo User on Ubuntu](https://www.digitalocean.com/community/tutorials/how-to-create-a-sudo-user-on-ubuntu-quickstart)
+- http://flask.pocoo.org/docs/0.12/deploying/#deployment
