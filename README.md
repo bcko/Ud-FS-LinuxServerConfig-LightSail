@@ -10,7 +10,7 @@ Udacity Full Stack Web Developer Nanodegree Project : Linux Server Configuration
 * SSH port : 2200
 
 ## Complete URL to hosted web application
-
+http://ec2-18-216-240-252.us-east-2.compute.amazonaws.com/
 
 ## Summary of software installed and configuration changes made
 
@@ -84,17 +84,28 @@ sudo service ssh restart        # restart ssh service
 sudo timedatectl set-timezone UTC
 ```
 
-### Install and configure Apache to serve a Python mod_wsgi application
+### Install Apache and mod_wsgi for python3
 
 ```bash
 sudo apt install apache2                  # install apache
 sudo apt install libapache2-mod-wsgi-py3  # install python3 mod_wsgi
 ```
+### configure Apache to handle requests using the WSGI module
+```bash
+cd /etc/apache2/sites-enabled
+sudo cp 000-default.conf catalog.conf
+sudo nano catalog.conf
+# 18.216.240.252
+```
+```conf
+
+
+```
 
 ### Install and configure PostgreSQL
 ```bash
-sudo apt install postgresql # install postgreSQL
-
+sudo apt install postgresql                    # install postgreSQL
+sudo nano /etc/postgresql/9.5/main/pg_hba.conf # no remote connections to the database
 # Create a new database user named catalog that has limited permissions to your catalog application database.
 sudo -u postgres createuser -P catalog
 
@@ -120,17 +131,6 @@ sudo pip3 install httplib2
 sudo pip3 install requests
 sudo pip3 install oauth2client
 sudo pip3 install sqlalchemy
-```
-
-### Deploy the Item Catalog project
-
-```bash
-
-# you created earlier in this Nanodegree program.
-
-# Set it up in your server so that it functions correctly 
-# when visiting your server’s IP address in a browser. 
-# Make sure that your .git directory is not publicly accessible via a browser!
 ```
 
 
