@@ -141,3 +141,4 @@ sudo pip3 install sqlalchemy
 - [Set up SSH for your Linux/Unix-based Lightsail instances](https://lightsail.aws.amazon.com/ls/docs/how-to/article/lightsail-how-to-set-up-ssh)
 - [How To Create a Sudo User on Ubuntu](https://www.digitalocean.com/community/tutorials/how-to-create-a-sudo-user-on-ubuntu-quickstart)
 - http://flask.pocoo.org/docs/0.12/deploying/#deployment
+- http://flask.pocoo.org/docs/0.12/deploying/mod_wsgi/
