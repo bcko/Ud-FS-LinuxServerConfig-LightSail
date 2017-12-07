@@ -93,14 +93,17 @@ cd /var/www/catalog
 git clone https://github.com/bcko/Ud-FSND-ItemCatalogApp-PythonFlask.git
 
 ```
-### Install Flask 
+### Install Flask and dependencies
 ```bash
 sudo apt install python3-pip
 sudo pip install virtualenv
 sudo virtualenv venv
 source venv/bin/activate
-pip3 install Flask
-pip3 install 
+sudo pip3 install Flask
+sudo pip3 install oauth2client
+sudo pip3 install httplib2
+sudo pip3 install sqlalchemy
+sudo pip3 install requests
 ```
 
 ### Deploy the Item Catalog project
